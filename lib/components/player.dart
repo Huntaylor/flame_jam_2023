@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:chilling_escape/chilling_escape.dart';
+import 'package:chilling_escape/utils/asset_constants.dart';
+import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 
 enum PlayerState {
@@ -11,13 +13,22 @@ enum PlayerState {
   hit,
 }
 
-class Player extends SpriteAnimationGroupComponent
-    with HasGameRef<ChillingEscape> {
-  Player({super.position});
+class Player extends SpriteGroupComponent with HasGameRef<ChillingEscape> {
+  Player({super.position})
+      : super(
+          size: Vector2.all(32),
+        );
+
+  late final Sprite idleSprite;
 
   @override
   FutureOr<void> onLoad() {
-    // TODO: implement onLoad
+    _loadSprites();
+    add(
+      RectangleHitbox(
+        collisionType: CollisionType.active,
+      ),
+    );
     return super.onLoad();
   }
 
@@ -25,5 +36,10 @@ class Player extends SpriteAnimationGroupComponent
   void update(double dt) {
     // TODO: implement update
     super.update(dt);
+  }
+
+  void _loadSprites() {
+    final iceImage = game.images.fromCache(AssetConstants.playerSprite);
+    idleSprite = Sprite(iceImage);
   }
 }
