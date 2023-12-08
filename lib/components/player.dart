@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:chilling_escape/chilling_escape.dart';
-import 'package:chilling_escape/utils/asset_constants.dart';
+import 'package:flame_jam_2023/chilling_escape.dart';
+import 'package:flame_jam_2023/utils/asset_constants.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 

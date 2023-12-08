@@ -1,4 +1,4 @@
-import 'package:chilling_escape/chilling_escape.dart';
+import 'package:flame_jam_2023/chilling_escape.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/foundation.dart';

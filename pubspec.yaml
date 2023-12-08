@@ -1,4 +1,4 @@
-name: chilling_escape
+name: flame_jam_2023
 description: "A new Flutter project."
 
 publish_to: "none"
@@ -24,8 +24,6 @@ dev_dependencies:
 
   flutter_lints: ^3.0.1
   very_good_analysis: ^5.1.0
-  flutter_gen_runner: ^5.3.2
-  build_runner: ^2.4.7
 
 scripts: derry.yaml
 

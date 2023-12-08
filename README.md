@@ -1,4 +1,4 @@
-# chilling_escape
+# flame_jam_2023
 
 A new Flutter project.
 

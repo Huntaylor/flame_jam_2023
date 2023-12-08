@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:chilling_escape/components/player.dart';
+import 'package:flame_jam_2023/components/player.dart';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
 

@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:chilling_escape/chilling_escape.dart';
-import 'package:chilling_escape/components/player.dart';
+import 'package:flame_jam_2023/chilling_escape.dart';
+import 'package:flame_jam_2023/components/player.dart';
 import 'package:flame/components.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 
