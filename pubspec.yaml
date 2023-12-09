@@ -32,7 +32,7 @@ flutter:
   generate: true
 
   assets:
-    - assets/tiled/
+    - assets/tiles/
     - assets/images/
-    - assets/images/Character/
+    - assets/images/character/
     - assets/images/Terrain/

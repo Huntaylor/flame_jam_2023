@@ -1,0 +1,52 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "Endless-1.tmx",
+    "expandedProjectPaths": [
+        "."
+    ],
+    "fileStates": {
+        "Chilling Escape.tsx": {
+            "scaleInDock": 1
+        },
+        "Endless-1.tmx": {
+            "scale": 0.75,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 382.6666666666666,
+                "y": 318.6666666666667
+            }
+        },
+        "Terrain (16x16).tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "endless_1.tmx": {
+            "scale": 0.9777083333333332,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 477.64756019603675,
+                "y": 56.25399531216709
+            }
+        }
+    },
+    "last.externalTilesetPath": "C:/Users/tiger/OneDrive/Documents/GitHub/flame_jam_2023/assets/tiled",
+    "last.imagePath": "C:/Users/tiger/OneDrive/Documents/GitHub/flame_jam_2023/assets/images/Terrain",
+    "map.fixedSize": true,
+    "map.height": 23,
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 16,
+    "map.tileWidth": 16,
+    "map.width": 60,
+    "openFiles": [
+        "Endless-1.tmx"
+    ],
+    "project": "hot_and_cold.tiled-project",
+    "recentFiles": [
+        "Endless-1.tmx",
+        "endless_1.tmx",
+        "Terrain (16x16).tsx"
+    ]
+}
