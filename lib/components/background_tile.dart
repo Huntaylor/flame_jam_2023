@@ -1,8 +1,8 @@
 import 'dart:async';
 
+import 'package:flame_jam_2023/utils/asset_constants.dart';
 import 'package:flame/components.dart';
 import 'package:flame/parallax.dart';
-import 'package:flame_jam_2023/utils/asset_constants.dart';
 import 'package:flutter/material.dart';
 
 class BackgroundTile extends ParallaxComponent {

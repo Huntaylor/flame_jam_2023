@@ -1,12 +1,12 @@
 import 'dart:async';
 
-import 'package:flame/events.dart';
 import 'package:flame_jam_2023/chilling_escape.dart';
 import 'package:flame_jam_2023/components/collision_block.dart';
 import 'package:flame_jam_2023/components/player.dart';
-import 'package:flame/components.dart';
 import 'package:flame_jam_2023/components/sprite_box.dart';
 import 'package:flame_jam_2023/utils/asset_constants.dart';
+import 'package:flame/events.dart';
+import 'package:flame/components.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 
 class Level extends World with HasGameRef<ChillingEscape>, TapCallbacks {
@@ -26,7 +26,7 @@ class Level extends World with HasGameRef<ChillingEscape>, TapCallbacks {
   @override
   FutureOr<void> onLoad() async {
     level = await TiledComponent.load(
-      'Endless-1.tmx',
+      AssetConstants.endless1,
       Vector2.all(16),
     );
 
@@ -87,6 +87,17 @@ class Level extends World with HasGameRef<ChillingEscape>, TapCallbacks {
       for (final collision in collisionsLayer.objects) {
         switch (collision.class_) {
           case 'Lava':
+            final block = LavaBlock(
+              position: Vector2(
+                collision.x,
+                collision.y,
+              ),
+              size: Vector2(
+                collision.width,
+                collision.height,
+              ),
+            );
+            add(block);
           case 'Ground':
             final block = CollisionBlock(
               position: Vector2(
@@ -103,7 +114,7 @@ class Level extends World with HasGameRef<ChillingEscape>, TapCallbacks {
             break;
           case 'Platform':
           default:
-            final block = CollisionBlock(
+            final block = PlatformBlock(
               position: Vector2(
                 collision.x,
                 collision.y,

@@ -1,19 +1,27 @@
 import 'dart:async';
 
-import 'package:flame/collisions.dart';
-import 'package:flame/components.dart';
 import 'package:flame_jam_2023/chilling_escape.dart';
 import 'package:flame_jam_2023/utils/asset_constants.dart';
+import 'package:flame/collisions.dart';
+import 'package:flame/components.dart';
 
-class SpriteBox extends SpriteComponent with HasGameRef<ChillingEscape> {
+enum SpriteState {
+  normal,
+  frozen,
+}
+
+class SpriteBox extends SpriteGroupComponent
+    with HasGameRef<ChillingEscape>, CollisionCallbacks {
   SpriteBox({
     required this.name,
     super.position,
-    super.sprite,
+    super.current,
     super.size,
   });
   final String name;
   late final Sprite normalSprite;
+  late final Sprite frozenSprite;
+  bool isFrozen = false;
 
   @override
   FutureOr<void> onLoad() {
@@ -31,22 +39,42 @@ class SpriteBox extends SpriteComponent with HasGameRef<ChillingEscape> {
   void _loadSprites() {
     final boxImage = game.images.fromCache(
       AssetConstants.boxSprite(
-        name,
+        AssetConstants.normalBoxSprite,
+      ),
+    );
+    final frozenImage = game.images.fromCache(
+      AssetConstants.boxSprite(
+        AssetConstants.frozenBoxSprite,
       ),
     );
     normalSprite = Sprite(boxImage);
+    frozenSprite = Sprite(frozenImage);
 
-    sprite = normalSprite;
+    sprites = {
+      SpriteState.normal: normalSprite,
+      SpriteState.frozen: frozenSprite,
+    };
+    // Set current animation
+    current = SpriteState.normal;
   }
 
-  // @override
-  // void update(double dt) {
-  //   if (!game.camera.canSee(this) && game.player.x > x) _removeSprite();
+  @override
+  void update(double dt) {
+    _updateBoxState();
+    super.update(dt);
+  }
 
-  //   super.update(dt);
-  // }
+  @override
+  void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
+    isFrozen = true;
+    super.onCollision(intersectionPoints, other);
+  }
 
-  // void _removeSprite() {
-  //   removeFromParent();
-  // }
+  void _updateBoxState() {
+    SpriteState spriteState = SpriteState.normal;
+    if (isFrozen) {
+      spriteState = SpriteState.frozen;
+    }
+    current = spriteState;
+  }
 }

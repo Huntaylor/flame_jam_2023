@@ -1,13 +1,13 @@
 import 'dart:async';
 
+import 'package:flame_jam_2023/components/background_tile.dart';
+import 'package:flame_jam_2023/components/player.dart';
+import 'package:flame_jam_2023/levels/level.dart';
+import 'package:flame_jam_2023/utils/asset_constants.dart';
 import 'package:flame/camera.dart';
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
-import 'package:flame_jam_2023/components/background_tile.dart';
-import 'package:flame_jam_2023/components/player.dart';
 import 'package:flame/events.dart';
-import 'package:flame_jam_2023/levels/level.dart';
-import 'package:flame_jam_2023/utils/asset_constants.dart';
 import 'package:flutter/painting.dart';
 
 class ChillingEscape extends FlameGame

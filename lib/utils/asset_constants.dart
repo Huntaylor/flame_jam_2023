@@ -5,6 +5,12 @@ class AssetConstants {
   ///'Terrain/$name.png'
   static String boxSprite(String name) => 'Terrain/$name.png';
 
+  ///'WoodBox.png'
+  static String normalBoxSprite = 'WoodBox';
+
+  ///'FrozenWoodBox.png'
+  static String frozenBoxSprite = 'FrozenWoodBox';
+
   ///'Background/snowy.png'
   static String backgroundTile = 'Background/snowy.png';
 

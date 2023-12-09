@@ -1,11 +1,11 @@
 import 'dart:async';
 
-import 'package:flame/effects.dart';
-import 'package:flame/geometry.dart';
 import 'package:flame_jam_2023/chilling_escape.dart';
 import 'package:flame_jam_2023/components/collision_block.dart';
 import 'package:flame_jam_2023/components/sprite_box.dart';
 import 'package:flame_jam_2023/utils/asset_constants.dart';
+import 'package:flame/effects.dart';
+import 'package:flame/geometry.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flutter/services.dart';
@@ -33,11 +33,13 @@ class Player extends SpriteComponent
   late final Sprite idleSprite;
   late RectangleHitbox hitbox;
   late RotateEffect rotate;
+  PlayerState playerState = PlayerState.idle;
 
   final double _jumpForce = 415;
   final double _terminalVelocity = 500;
   final double _gravity = 21.8;
   final double rotationSpeed = 2.5;
+  Vector2 maxScale = Vector2.zero();
   Vector2 spawnPoint = Vector2.zero();
   double fixedDeltaTime = 1 / 60;
   double accumulatedTime = 0;
@@ -45,9 +47,11 @@ class Player extends SpriteComponent
   bool hasJumped = false;
   bool isOnGround = false;
   bool isInAir = false;
+  bool isMelting = false;
 
   @override
   FutureOr<void> onLoad() {
+    maxScale = scale;
     debugMode = true;
     _loadSprites();
     hitbox = RectangleHitbox(
@@ -62,6 +66,7 @@ class Player extends SpriteComponent
   void update(double dt) {
     accumulatedTime += dt;
     while (accumulatedTime >= fixedDeltaTime) {
+      if (isMelting) _meltPlayer();
       _updatePlayerMovement(fixedDeltaTime);
       _applyGravity(fixedDeltaTime);
       accumulatedTime -= fixedDeltaTime;
@@ -78,9 +83,11 @@ class Player extends SpriteComponent
 
   @override
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
-    if (other is CollisionBlock) {
+    bool isLava = (other is LavaBlock);
+    isMelting = isLava;
+    if (other is LavaBlock) {
       isInAir = position.y < other.y;
-      if (game.worldVelocity.y > 0) {
+      if (game.worldVelocity.y > 0 && isInAir) {
         // _gravity = 0;
         game.worldVelocity.y = 0;
 
@@ -89,7 +96,8 @@ class Player extends SpriteComponent
         isOnGround = true;
       }
     }
-    if (other is SpriteBox) {
+
+    if (other is SpriteBox || other is PlatformBlock) {
       isInAir = position.y < other.y;
 
       if (game.worldVelocity.y > 0 && isInAir) {
@@ -101,6 +109,17 @@ class Player extends SpriteComponent
         if (!rotate.controller.completed && other.x <= x) {
           rotate.controller.setToEnd();
         }
+      }
+    }
+    if (other is CollisionBlock) {
+      isInAir = position.y < other.y;
+      if (game.worldVelocity.y > 0) {
+        // _gravity = 0;
+        game.worldVelocity.y = 0;
+
+        position.y = other.y - (height / 2) - hitbox.y;
+        isInAir = false;
+        isOnGround = true;
       }
     }
     super.onCollision(intersectionPoints, other);
@@ -149,5 +168,9 @@ class Player extends SpriteComponent
     );
 
     add(rotate);
+  }
+
+  void _meltPlayer() {
+    print(isMelting);
   }
 }
