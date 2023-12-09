@@ -9,15 +9,32 @@
     ],
     "fileStates": {
         "Chilling Escape.tsx": {
-            "scaleInDock": 1
+            "scaleInDock": 8,
+            "scaleInEditor": 11
         },
         "Endless-1.tmx": {
-            "scale": 0.5,
+            "expandedObjectLayers": [
+                3,
+                2
+            ],
+            "scale": 0.75,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 392,
-                "y": 252
+                "x": 316,
+                "y": 340
             }
+        },
+        "Endless-2.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 399,
+                "y": 141
+            }
+        },
+        "Ground_Terrain.tsx": {
+            "scaleInDock": 3,
+            "scaleInEditor": 11
         },
         "Terrain (16x16).tsx": {
             "scaleInDock": 1,
@@ -45,7 +62,10 @@
     ],
     "project": "hot_and_cold.tiled-project",
     "recentFiles": [
+        "Chilling Escape.tsx",
         "Endless-1.tmx",
+        "Endless-2.tmx",
+        "Ground_Terrain.tsx",
         "endless_1.tmx",
         "Terrain (16x16).tsx"
     ],

@@ -2,18 +2,30 @@ import 'dart:async';
 
 import 'package:flame/camera.dart';
 import 'package:flame/components.dart';
+import 'package:flame/game.dart';
+import 'package:flame_jam_2023/components/background_tile.dart';
 import 'package:flame_jam_2023/components/player.dart';
 import 'package:flame/events.dart';
-import 'package:flame/game.dart';
 import 'package:flame_jam_2023/levels/level.dart';
 import 'package:flame_jam_2023/utils/asset_constants.dart';
 import 'package:flutter/painting.dart';
 
 class ChillingEscape extends FlameGame
     with HasKeyboardHandlerComponents, HasCollisionDetection, TapCallbacks {
+  // ChillingEscape()
+  //     : super(
+  //         tileSize: 64,
+  //         configuration: const LeapConfiguration(
+  //           tiled: TiledOptions(
+  //             playerSpawnClass: 'Player',
+  //             atlasMaxY: 368,
+  //             atlasMaxX: 4048,
+  //           ),
+  //         ),
+  //       );
   Player player = Player();
 
-  double worldSpeed = 0;
+  double worldSpeed = 100;
   Vector2 worldVelocity = Vector2.zero();
   double horizontalMovement = -1;
   double fixedDeltaTime = 1 / 60;
@@ -50,6 +62,11 @@ class ChillingEscape extends FlameGame
       world: world,
       width: 640,
       height: 360,
+    );
+
+    //This will remain persistent where ever the player goes!
+    camera.backdrop = BackgroundTile(
+      position: Vector2.zero(),
     );
 
     camera.follow(

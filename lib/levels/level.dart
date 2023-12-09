@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flame/events.dart';
 import 'package:flame_jam_2023/chilling_escape.dart';
-import 'package:flame_jam_2023/components/background_tile.dart';
 import 'package:flame_jam_2023/components/collision_block.dart';
 import 'package:flame_jam_2023/components/player.dart';
 import 'package:flame/components.dart';
@@ -27,7 +26,7 @@ class Level extends World with HasGameRef<ChillingEscape>, TapCallbacks {
   @override
   FutureOr<void> onLoad() async {
     level = await TiledComponent.load(
-      AssetConstants.endless1,
+      'Endless-1.tmx',
       Vector2.all(16),
     );
 
@@ -35,20 +34,9 @@ class Level extends World with HasGameRef<ChillingEscape>, TapCallbacks {
 
     _spawningObjects();
     _addCollisions();
-    _scrollingBackground();
 
     return super.onLoad();
   }
-
-  // @override
-  // void update(double dt) {
-  //   game.accumulatedTime += dt;
-  //   while (game.accumulatedTime >= game.fixedDeltaTime) {
-  //     _updateSlider(dt);
-  //     game.accumulatedTime -= game.fixedDeltaTime;
-  //   }
-  //   super.update(dt);
-  // }
 
   @override
   void onTapDown(TapDownEvent event) {
@@ -56,18 +44,6 @@ class Level extends World with HasGameRef<ChillingEscape>, TapCallbacks {
       player.hasJumped = true;
     }
     super.onTapDown(event);
-  }
-
-  void _scrollingBackground() {
-    final backgroundLayer = level.tileMap.getLayer('Background');
-
-    if (backgroundLayer != null) {
-      final backgroundTile = BackgroundTile(
-        position: Vector2(0, 0),
-      );
-
-      add(backgroundTile);
-    }
   }
 
   void _spawningObjects() {
@@ -110,6 +86,7 @@ class Level extends World with HasGameRef<ChillingEscape>, TapCallbacks {
     if (collisionsLayer != null) {
       for (final collision in collisionsLayer.objects) {
         switch (collision.class_) {
+          case 'Lava':
           case 'Ground':
             final block = CollisionBlock(
               position: Vector2(
@@ -124,7 +101,7 @@ class Level extends World with HasGameRef<ChillingEscape>, TapCallbacks {
             // collisionBlock.add(block);
             add(block);
             break;
-
+          case 'Platform':
           default:
             final block = CollisionBlock(
               position: Vector2(
@@ -136,18 +113,10 @@ class Level extends World with HasGameRef<ChillingEscape>, TapCallbacks {
                 collision.height,
               ),
             );
-            // collisionBlock.add(block);
             add(block);
             break;
         }
       }
     }
   }
-
-  // void _updateSlider(double dt) {
-  //   game.worldVelocity.x = game.horizontalMovement * game.worldSpeed;
-  //   // Delta time, dt, allows us to check how many times we have updated in a
-  //   // second, then divide by the same amount to stay consistant
-  //   level.x += game.worldVelocity.x * dt;
-  // }
 }

@@ -17,6 +17,7 @@ dependencies:
   flame_bloc: ^1.10.6
   flame_audio: ^2.1.4
   flame_tiled: ^1.18.0
+  flame_behaviors: ^1.0.0
 
 dev_dependencies:
   flutter_test:
@@ -37,3 +38,4 @@ flutter:
     - assets/images/character/
     - assets/images/Background/
     - assets/images/Terrain/
+    - assets/images/Items/

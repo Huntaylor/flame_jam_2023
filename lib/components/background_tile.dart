@@ -18,12 +18,13 @@ class BackgroundTile extends ParallaxComponent {
   FutureOr<void> onLoad() async {
     priority = -10;
     size = Vector2.all(64);
+
     parallax = await game.loadParallax(
       [
         ParallaxImageData(AssetConstants.backgroundTile),
       ],
       baseVelocity: Vector2(
-        20,
+        40,
         -scrollSpeed,
       ),
       repeat: ImageRepeat.repeat,

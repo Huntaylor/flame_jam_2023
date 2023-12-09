@@ -4,6 +4,7 @@ import 'package:flame/effects.dart';
 import 'package:flame/geometry.dart';
 import 'package:flame_jam_2023/chilling_escape.dart';
 import 'package:flame_jam_2023/components/collision_block.dart';
+import 'package:flame_jam_2023/components/sprite_box.dart';
 import 'package:flame_jam_2023/utils/asset_constants.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
@@ -22,6 +23,7 @@ class Player extends SpriteComponent
   Player({
     super.position,
     super.sprite,
+    super.scale,
   }) : super(
           anchor: Anchor.center,
           priority: 1,
@@ -30,19 +32,23 @@ class Player extends SpriteComponent
 
   late final Sprite idleSprite;
   late RectangleHitbox hitbox;
+  late RotateEffect rotate;
 
   final double _jumpForce = 415;
   final double _terminalVelocity = 500;
   final double _gravity = 21.8;
+  final double rotationSpeed = 2.5;
   Vector2 spawnPoint = Vector2.zero();
   double fixedDeltaTime = 1 / 60;
   double accumulatedTime = 0;
   double horizontalMovement = 1;
   bool hasJumped = false;
   bool isOnGround = false;
+  bool isInAir = false;
 
   @override
   FutureOr<void> onLoad() {
+    debugMode = true;
     _loadSprites();
     hitbox = RectangleHitbox(
       isSolid: true,
@@ -73,12 +79,28 @@ class Player extends SpriteComponent
   @override
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
     if (other is CollisionBlock) {
+      isInAir = position.y < other.y;
       if (game.worldVelocity.y > 0) {
         // _gravity = 0;
         game.worldVelocity.y = 0;
 
         position.y = other.y - (height / 2) - hitbox.y;
+        isInAir = false;
         isOnGround = true;
+      }
+    }
+    if (other is SpriteBox) {
+      isInAir = position.y < other.y;
+
+      if (game.worldVelocity.y > 0 && isInAir) {
+        game.worldVelocity.y = 0;
+
+        position.y = other.y - (height / 2) - hitbox.y;
+        isInAir = false;
+        isOnGround = true;
+        if (!rotate.controller.completed && other.x <= x) {
+          rotate.controller.setToEnd();
+        }
       }
     }
     super.onCollision(intersectionPoints, other);
@@ -115,13 +137,14 @@ class Player extends SpriteComponent
     position.y += game.worldVelocity.y * dt;
     hasJumped = false;
     isOnGround = false;
+    isInAir = true;
   }
 
   void _rotate(double dt) {
-    RotateEffect rotate = RotateEffect.by(
+    rotate = RotateEffect.by(
       tau / 4,
       EffectController(
-        speed: 2.5,
+        speed: rotationSpeed,
       ),
     );
 
