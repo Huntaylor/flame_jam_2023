@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flame/events.dart';
 import 'package:flame_jam_2023/chilling_escape.dart';
+import 'package:flame_jam_2023/components/background_tile.dart';
 import 'package:flame_jam_2023/components/collision_block.dart';
 import 'package:flame_jam_2023/components/player.dart';
 import 'package:flame/components.dart';
@@ -13,12 +14,14 @@ class Level extends World with HasGameRef<ChillingEscape>, TapCallbacks {
   // final String levelName;
   late TiledComponent level;
   final Player player;
+  final bool isFirst;
 
   Level({
     // required this.levelName,
     super.children,
     super.priority = -10,
     required this.player,
+    this.isFirst = false,
   });
 
   @override
@@ -32,20 +35,20 @@ class Level extends World with HasGameRef<ChillingEscape>, TapCallbacks {
 
     _spawningObjects();
     _addCollisions();
+    _scrollingBackground();
 
     return super.onLoad();
   }
 
-  @override
-  void update(double dt) {
-    game.accumulatedTime += dt;
-    while (game.accumulatedTime >= game.fixedDeltaTime) {
-      _updateSlider(dt);
-      game.accumulatedTime -= game.fixedDeltaTime;
-    }
-    _updateSlider(dt);
-    super.update(dt);
-  }
+  // @override
+  // void update(double dt) {
+  //   game.accumulatedTime += dt;
+  //   while (game.accumulatedTime >= game.fixedDeltaTime) {
+  //     _updateSlider(dt);
+  //     game.accumulatedTime -= game.fixedDeltaTime;
+  //   }
+  //   super.update(dt);
+  // }
 
   @override
   void onTapDown(TapDownEvent event) {
@@ -53,6 +56,18 @@ class Level extends World with HasGameRef<ChillingEscape>, TapCallbacks {
       player.hasJumped = true;
     }
     super.onTapDown(event);
+  }
+
+  void _scrollingBackground() {
+    final backgroundLayer = level.tileMap.getLayer('Background');
+
+    if (backgroundLayer != null) {
+      final backgroundTile = BackgroundTile(
+        position: Vector2(0, 0),
+      );
+
+      add(backgroundTile);
+    }
   }
 
   void _spawningObjects() {
@@ -129,10 +144,10 @@ class Level extends World with HasGameRef<ChillingEscape>, TapCallbacks {
     }
   }
 
-  void _updateSlider(double dt) {
-    game.worldVelocity.x = game.horizontalMovement * game.worldSpeed;
-    // Delta time, dt, allows us to check how many times we have updated in a
-    // second, then divide by the same amount to stay consistant
-    level.x += game.worldVelocity.x * dt;
-  }
+  // void _updateSlider(double dt) {
+  //   game.worldVelocity.x = game.horizontalMovement * game.worldSpeed;
+  //   // Delta time, dt, allows us to check how many times we have updated in a
+  //   // second, then divide by the same amount to stay consistant
+  //   level.x += game.worldVelocity.x * dt;
+  // }
 }

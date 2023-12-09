@@ -7,12 +7,13 @@ import 'package:flame/events.dart';
 import 'package:flame/game.dart';
 import 'package:flame_jam_2023/levels/level.dart';
 import 'package:flame_jam_2023/utils/asset_constants.dart';
+import 'package:flutter/painting.dart';
 
 class ChillingEscape extends FlameGame
     with HasKeyboardHandlerComponents, HasCollisionDetection, TapCallbacks {
   Player player = Player();
 
-  double worldSpeed = 100;
+  double worldSpeed = 0;
   Vector2 worldVelocity = Vector2.zero();
   double horizontalMovement = -1;
   double fixedDeltaTime = 1 / 60;
@@ -20,6 +21,7 @@ class ChillingEscape extends FlameGame
 
   List<String> endlessNames = [
     AssetConstants.endless1,
+    AssetConstants.endless2,
   ];
 
   @override
@@ -38,9 +40,10 @@ class ChillingEscape extends FlameGame
     );
 
     Viewfinder finder = Viewfinder();
+    Offset playerOffset = Offset(player.x + .1, player.y);
 
-    finder.zoom = .5;
-    finder.anchor = Anchor.centerLeft;
+    // finder.zoom = .5;
+    finder.anchor = Anchor(playerOffset.dx, player.y);
 
     camera = CameraComponent.withFixedResolution(
       viewfinder: finder,

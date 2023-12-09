@@ -35,4 +35,5 @@ flutter:
     - assets/tiles/
     - assets/images/
     - assets/images/character/
+    - assets/images/Background/
     - assets/images/Terrain/

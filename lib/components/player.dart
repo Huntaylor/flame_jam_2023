@@ -33,7 +33,7 @@ class Player extends SpriteComponent
 
   final double _jumpForce = 415;
   final double _terminalVelocity = 500;
-  double _gravity = 21.8;
+  final double _gravity = 21.8;
   Vector2 spawnPoint = Vector2.zero();
   double fixedDeltaTime = 1 / 60;
   double accumulatedTime = 0;
@@ -71,18 +71,17 @@ class Player extends SpriteComponent
   }
 
   @override
-  void onCollisionStart(
-      Set<Vector2> intersectionPoints, PositionComponent other) {
+  void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
     if (other is CollisionBlock) {
       if (game.worldVelocity.y > 0) {
-        _gravity = 0;
+        // _gravity = 0;
         game.worldVelocity.y = 0;
 
         position.y = other.y - (height / 2) - hitbox.y;
         isOnGround = true;
       }
     }
-    super.onCollisionStart(intersectionPoints, other);
+    super.onCollision(intersectionPoints, other);
   }
 
   void _loadSprites() {
@@ -111,7 +110,7 @@ class Player extends SpriteComponent
   }
 
   void _playerJumped(dt) {
-    _gravity = 21.8;
+    // _gravity = 21.8;
     game.worldVelocity.y = -_jumpForce;
     position.y += game.worldVelocity.y * dt;
     hasJumped = false;
