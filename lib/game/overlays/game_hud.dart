@@ -25,7 +25,7 @@ class GameHud extends PositionComponent with HasGameRef<ChillingEscape> {
       textRenderer: TextPaint(
         style: const TextStyle(
           fontSize: 32,
-          color: Color.fromRGBO(10, 10, 10, 1),
+          color: Color.fromRGBO(7, 28, 182, 1),
         ),
       ),
       anchor: Anchor.center,

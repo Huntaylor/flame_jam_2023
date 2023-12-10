@@ -124,7 +124,6 @@ class Player extends SpriteGroupComponent
       }
     }
     if (other is Sunshine) {
-      print('melting');
       _meltPlayer();
     }
     if (other is SpriteBox || other is PlatformBlock) {

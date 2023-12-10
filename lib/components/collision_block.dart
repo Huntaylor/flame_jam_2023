@@ -41,7 +41,6 @@ class PlatformBlock extends PositionComponent with HasGameRef<ChillingEscape> {
   });
   @override
   FutureOr<void> onLoad() {
-    debugMode = true;
     position = Vector2(
       gridPosition.x + xOffset,
       gridPosition.y,

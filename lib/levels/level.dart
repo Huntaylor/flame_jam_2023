@@ -27,7 +27,6 @@ class Level extends World with HasGameRef<ChillingEscape>, TapCallbacks {
   FutureOr<void> onLoad() async {
     final segmentsToLoad = (game.size.x / 640).ceil();
     segmentsToLoad.clamp(0, levels.length);
-    print(levels.length);
 
     for (var i = 0; i <= levels.length - 1; i++) {
       await loadGameSegments(i, (640 * i).toDouble());
@@ -45,7 +44,30 @@ class Level extends World with HasGameRef<ChillingEscape>, TapCallbacks {
     level.position = Vector2(xPositionOffset, 0);
     _addCollisions(level, xPositionOffset);
     _spawningObjects(level, xPositionOffset);
+    loadedLevels.add(level);
     add(level);
+  }
+
+  @override
+  void update(double dt) {
+    //Removes tiles past the player
+    final List<TiledComponent> pastLevels = [];
+    final int index = loadedLevels.indexWhere(
+      (element) =>
+          !game.camera.canSee(element) &&
+          player.position.x > element.position.x,
+    );
+    if (index >= 0) {
+      pastLevels.add(loadedLevels[index]);
+    }
+
+    if (pastLevels.isNotEmpty) {
+      removeAll(pastLevels);
+      pastLevels.removeAt(index);
+      loadedLevels.removeAt(index);
+    }
+
+    super.update(dt);
   }
 
   @override

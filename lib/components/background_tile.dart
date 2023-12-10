@@ -12,7 +12,8 @@ class BackgroundTile extends ParallaxComponent {
     super.anchor,
   });
 
-  final double scrollSpeed = 40;
+  final double scrollSpeedY = 40;
+  final double scrollSpeedX = 150;
 
   @override
   FutureOr<void> onLoad() async {
@@ -24,8 +25,8 @@ class BackgroundTile extends ParallaxComponent {
         ParallaxImageData(AssetConstants.backgroundTile),
       ],
       baseVelocity: Vector2(
-        40,
-        -scrollSpeed,
+        scrollSpeedX,
+        -scrollSpeedY,
       ),
       repeat: ImageRepeat.repeat,
       fill: LayerFill.none,
