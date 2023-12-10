@@ -29,9 +29,9 @@ class ChillingEscape extends FlameGame
     AssetConstants.endless1,
     AssetConstants.endless2,
     AssetConstants.endless3,
-    // AssetConstants.endless2,
-    // AssetConstants.endless2,
-    // AssetConstants.endless2,
+    AssetConstants.endless2,
+    AssetConstants.endless2,
+    AssetConstants.endless2,
   ];
 
   @override

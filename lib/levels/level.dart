@@ -12,14 +12,11 @@ import 'package:flame/components.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 
 class Level extends World with HasGameRef<ChillingEscape>, TapCallbacks {
-  // final String initialLevelName;
-  // late TiledComponent initialLevel;
   final Player player;
   final List<String> levels;
   List<TiledComponent> loadedLevels = [];
 
   Level({
-    // required this.initialLevelName,
     required this.levels,
     super.children,
     super.priority = -10,
@@ -28,27 +25,13 @@ class Level extends World with HasGameRef<ChillingEscape>, TapCallbacks {
 
   @override
   FutureOr<void> onLoad() async {
-    // initialLevel = await TiledComponent.load(
-    //   initialLevelName,
-    //   Vector2.all(16),
-    // );
     final segmentsToLoad = (game.size.x / 640).ceil();
-    print(segmentsToLoad);
     segmentsToLoad.clamp(0, levels.length);
+    print(levels.length);
 
-    for (var i = 0; i <= segmentsToLoad; i++) {
+    for (var i = 0; i <= levels.length - 1; i++) {
       await loadGameSegments(i, (640 * i).toDouble());
     }
-
-    // addAll(
-    //   [
-    //     // initialLevel,
-    //     ...loadedLevels,
-    //   ],
-    // );
-
-    // _spawningObjects(initialLevel);
-    // _addCollisions(initialLevel);
 
     return super.onLoad();
   }
@@ -60,7 +43,6 @@ class Level extends World with HasGameRef<ChillingEscape>, TapCallbacks {
       Vector2.all(16),
     );
     level.position = Vector2(xPositionOffset, 0);
-    // loadedLevels.add(level);
     _addCollisions(level, xPositionOffset);
     _spawningObjects(level, xPositionOffset);
     add(level);
@@ -145,18 +127,12 @@ class Level extends World with HasGameRef<ChillingEscape>, TapCallbacks {
       for (final collision in collisionsLayer.objects) {
         switch (collision.class_) {
           case AssetConstants.lava:
-            print('added lava');
             final block = LavaBlock(
               xOffset: xPositionOffset,
               gridPosition: Vector2(
                 collision.x,
                 collision.y,
               ),
-              // position: Vector2(
-              //   collision.x,
-              //   collision.y,
-              // ),
-
               size: Vector2(
                 collision.width,
                 collision.height,
@@ -170,10 +146,6 @@ class Level extends World with HasGameRef<ChillingEscape>, TapCallbacks {
                 collision.x,
                 collision.y,
               ),
-              // position: Vector2(
-              //   collision.x,
-              //   collision.y,
-              // ),
               size: Vector2(
                 collision.width,
                 collision.height,
@@ -189,10 +161,6 @@ class Level extends World with HasGameRef<ChillingEscape>, TapCallbacks {
                 collision.x,
                 collision.y,
               ),
-              // position: Vector2(
-              //   collision.x,
-              //   collision.y,
-              // ),
               size: Vector2(
                 collision.width,
                 collision.height,
