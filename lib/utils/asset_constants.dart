@@ -70,4 +70,21 @@ class AssetConstants {
 
   ///Snowflake collisions
   static const String snowflake = 'Snowflake';
+
+  ///Game Background
+  static const String gameBackground =
+      'assets/images/Background/game_background.png';
+
+  ///Gray Background
+  static const String grayBackground =
+      'assets/images/Background/gray_background.png';
+
+  ///Jump audio
+  static const String jumpAudio = 'jump.wav';
+
+  ///Melting audio
+  static const String meltingAudio = 'melting.mp3';
+
+  ///Pickup audio
+  static const String pickUpAudio = 'pickup_snowflake.wav';
 }

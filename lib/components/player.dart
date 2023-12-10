@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flame_audio/flame_audio.dart';
 import 'package:flame_jam_2023/chilling_escape.dart';
 import 'package:flame_jam_2023/components/collision_block.dart';
 import 'package:flame_jam_2023/components/snowflake.dart';
@@ -52,6 +53,8 @@ class Player extends SpriteGroupComponent
   bool hasJumped = false;
   bool isOnGround = false;
   bool isInAir = false;
+  bool isPlaying = false;
+
   bool collectedSnowflake = false;
 
   @override
@@ -92,6 +95,16 @@ class Player extends SpriteGroupComponent
     if (other is SnowflakeSprite) {
       other.collideWithPlayer();
       _collectedSnowflake();
+    }
+    if (other is LavaBlock || other is Sunshine) {
+      if (game.playSounds && !isPlaying) {
+        isPlaying = true;
+
+        FlameAudio.play(
+          AssetConstants.meltingAudio,
+          volume: game.soundVolume,
+        ).whenComplete(() => isPlaying = false);
+      }
     }
 
     super.onCollisionStart(intersectionPoints, other);
@@ -188,6 +201,12 @@ class Player extends SpriteGroupComponent
   }
 
   void _playerJumped(dt) {
+    if (game.playSounds) {
+      FlameAudio.play(
+        AssetConstants.jumpAudio,
+        volume: game.soundVolume,
+      );
+    }
     // _gravity = 21.8;
     game.worldVelocity.y = -_jumpForce;
     position.y += game.worldVelocity.y * dt;

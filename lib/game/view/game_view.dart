@@ -1,5 +1,6 @@
 import 'package:flame/game.dart';
 import 'package:flame_jam_2023/chilling_escape.dart';
+import 'package:flame_jam_2023/game/overlays/background.dart';
 import 'package:flame_jam_2023/game/overlays/game_over.dart';
 import 'package:flame_jam_2023/game/overlays/main_menu.dart';
 import 'package:flame_jam_2023/utils/asset_constants.dart';
@@ -33,13 +34,11 @@ class GameView extends StatelessWidget {
           //   GameWidget(game: ChillingEscape())
           // else
           GameWidget<ChillingEscape>.controlled(
-            // backgroundBuilder: (context) =>,
+            backgroundBuilder: (context) => const GrayBackground(),
+            loadingBuilder: (context) => const GameBackground(),
             gameFactory: () => ChillingEscape(),
             overlayBuilderMap: {
-              AssetConstants.mainMenu: (_, game) {
-                game.pauseEngine();
-                return MainMenu(game: game);
-              },
+              AssetConstants.mainMenu: (_, game) => const MainMenu(),
               AssetConstants.gameOver: (_, game) => GameOver(game: game),
             },
             // initialActiveOverlays: const [AssetConstants.mainMenu],

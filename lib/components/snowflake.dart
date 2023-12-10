@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flame_audio/flame_audio.dart';
 import 'package:flame_jam_2023/chilling_escape.dart';
 import 'package:flame_jam_2023/utils/asset_constants.dart';
 import 'package:flame/collisions.dart';
@@ -41,6 +42,12 @@ class SnowflakeSprite extends SpriteComponent with HasGameRef<ChillingEscape> {
 
   void collideWithPlayer() {
     if (!_collected) {
+      if (game.playSounds) {
+        FlameAudio.play(
+          AssetConstants.pickUpAudio,
+          volume: game.soundVolume,
+        );
+      }
       ++game.snowflakesCollected;
     }
     _collected = true;

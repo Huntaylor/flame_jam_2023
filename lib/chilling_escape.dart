@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flame/camera.dart';
 import 'package:flame/components.dart';
+import 'package:flame_audio/flame_audio.dart';
 import 'package:flame_jam_2023/components/background_tile.dart';
 import 'package:flame_jam_2023/components/player.dart';
 import 'package:flame_jam_2023/game/overlays/game_hud.dart';
@@ -20,8 +21,10 @@ class ChillingEscape extends FlameGame
   double horizontalMovement = -1;
   double fixedDeltaTime = 1 / 60;
   double accumulatedTime = 0;
+  double soundVolume = 1.0;
   int currentMapIndex = 0;
   int snowflakesCollected = 0;
+  bool playSounds = true;
 
   late Level level;
 
@@ -37,6 +40,7 @@ class ChillingEscape extends FlameGame
   @override
   void update(double dt) {
     if (player.size.x <= 14) {
+      worldSpeed = 0;
       pauseEngine();
       overlays.add(AssetConstants.gameOver);
     }

@@ -1,4 +1,4 @@
-import 'package:flame_jam_2023/game/view/game_view.dart';
+import 'package:flame_jam_2023/game/overlays/main_menu.dart';
 import 'package:flutter/material.dart';
 
 class App extends StatelessWidget {
@@ -7,7 +7,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: MyGame(),
+      home: MainMenu(),
     );
   }
 }
