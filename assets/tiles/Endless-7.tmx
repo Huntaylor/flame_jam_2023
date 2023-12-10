@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="40" height="23" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="130">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="40" height="23" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="132">
  <tileset firstgid="1" source="Chilling Escape.tsx"/>
  <tileset firstgid="243" source="Ground_Terrain.tsx"/>
  <layer id="1" name="Background" width="40" height="23">
@@ -31,7 +31,6 @@
  </layer>
  <objectgroup id="2" name="Collisions">
   <object id="86" name="Lava" type="Lava" x="0" y="336" width="640" height="16"/>
-  <object id="123" type="Sunshine" x="256" y="-112" width="64" height="320"/>
   <object id="124" name="Platform" type="Platform" x="432" y="320" width="32" height="16"/>
   <object id="125" name="Platform" type="Platform" x="544" y="320" width="32" height="16"/>
   <object id="127" name="Platform" type="Platform" x="304" y="208" width="16" height="16"/>
@@ -49,5 +48,6 @@
   <object id="96" name="WoodBox" type="WoodBox" x="272" y="208" width="32" height="32"/>
   <object id="97" name="WoodBox" type="WoodBox" x="352" y="304" width="32" height="32"/>
   <object id="98" name="WoodBox" type="WoodBox" x="352" y="272" width="32" height="32"/>
+  <object id="131" type="Sunshine" x="256" y="-112" width="64" height="320"/>
  </objectgroup>
 </map>

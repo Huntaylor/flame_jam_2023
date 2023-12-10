@@ -117,9 +117,12 @@ class Player extends SpriteGroupComponent
       }
     }
     if (other is OutOfBoundsBlock) {
-      position.y = other.y + other.height;
-      isInAir = false;
-      isOnGround = true;
+      if (game.worldVelocity.y > 0) {
+        game.worldVelocity.y = 0;
+        position.y = other.y + 64;
+        isInAir = false;
+        isOnGround = true;
+      }
     }
     if (other is LavaBlock || other is LavaBlock && other is PlatformBlock) {
       _meltPlayer();
@@ -221,7 +224,7 @@ class Player extends SpriteGroupComponent
   }
 
   void _meltPlayer() async {
-    currentSize = size / 1.0029;
+    currentSize = size / 1.0049;
     size = currentSize;
   }
 

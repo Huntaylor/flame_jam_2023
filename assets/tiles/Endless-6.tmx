@@ -35,28 +35,24 @@
  <objectgroup id="3" name="Spawnpoints">
   <object id="71" name="Snowflake" type="Snowflake" x="480" y="64" width="32" height="32"/>
   <object id="73" name="Snowflake" type="Snowflake" x="320" y="128" width="32" height="32"/>
-  <object id="77" name="WoodBox" type="WoodBox" x="592" y="304" width="32" height="32"/>
+  <object id="77" name="WoodBox" type="WoodBox" x="608" y="304" width="32" height="32"/>
   <object id="87" name="WoodBox" type="WoodBox" x="32" y="304" width="32" height="32"/>
-  <object id="88" name="WoodBox" type="WoodBox" x="112" y="304" width="32" height="32"/>
-  <object id="89" name="WoodBox" type="WoodBox" x="112" y="272" width="32" height="32"/>
-  <object id="90" name="WoodBox" type="WoodBox" x="192" y="304" width="32" height="32"/>
-  <object id="91" name="WoodBox" type="WoodBox" x="192" y="272" width="32" height="32"/>
-  <object id="92" name="WoodBox" type="WoodBox" x="192" y="240" width="32" height="32"/>
-  <object id="93" name="WoodBox" type="WoodBox" x="272" y="304" width="32" height="32"/>
-  <object id="94" name="WoodBox" type="WoodBox" x="272" y="272" width="32" height="32"/>
-  <object id="95" name="WoodBox" type="WoodBox" x="272" y="240" width="32" height="32"/>
-  <object id="96" name="WoodBox" type="WoodBox" x="272" y="208" width="32" height="32"/>
-  <object id="97" name="WoodBox" type="WoodBox" x="352" y="304" width="32" height="32"/>
-  <object id="98" name="WoodBox" type="WoodBox" x="352" y="272" width="32" height="32"/>
-  <object id="99" name="WoodBox" type="WoodBox" x="352" y="240" width="32" height="32"/>
-  <object id="100" name="WoodBox" type="WoodBox" x="352" y="208" width="32" height="32"/>
-  <object id="101" name="WoodBox" type="WoodBox" x="352" y="176" width="32" height="32"/>
-  <object id="102" name="WoodBox" type="WoodBox" x="432" y="304" width="32" height="32"/>
-  <object id="103" name="WoodBox" type="WoodBox" x="432" y="272" width="32" height="32"/>
-  <object id="104" name="WoodBox" type="WoodBox" x="432" y="240" width="32" height="32"/>
-  <object id="105" name="WoodBox" type="WoodBox" x="432" y="208" width="32" height="32"/>
-  <object id="106" name="WoodBox" type="WoodBox" x="432" y="176" width="32" height="32"/>
-  <object id="107" name="WoodBox" type="WoodBox" x="432" y="144" width="32" height="32"/>
+  <object id="88" name="WoodBox" type="WoodBox" x="128" y="304" width="32" height="32"/>
+  <object id="89" name="WoodBox" type="WoodBox" x="128" y="272" width="32" height="32"/>
+  <object id="90" name="WoodBox" type="WoodBox" x="224" y="304" width="32" height="32"/>
+  <object id="91" name="WoodBox" type="WoodBox" x="224" y="272" width="32" height="32"/>
+  <object id="92" name="WoodBox" type="WoodBox" x="224" y="240" width="32" height="32"/>
+  <object id="97" name="WoodBox" type="WoodBox" x="320" y="304" width="32" height="32"/>
+  <object id="98" name="WoodBox" type="WoodBox" x="320" y="272" width="32" height="32"/>
+  <object id="99" name="WoodBox" type="WoodBox" x="320" y="240" width="32" height="32"/>
+  <object id="100" name="WoodBox" type="WoodBox" x="320" y="208" width="32" height="32"/>
+  <object id="101" name="WoodBox" type="WoodBox" x="320" y="176" width="32" height="32"/>
+  <object id="102" name="WoodBox" type="WoodBox" x="416" y="304" width="32" height="32"/>
+  <object id="103" name="WoodBox" type="WoodBox" x="416" y="272" width="32" height="32"/>
+  <object id="104" name="WoodBox" type="WoodBox" x="416" y="240" width="32" height="32"/>
+  <object id="105" name="WoodBox" type="WoodBox" x="416" y="208" width="32" height="32"/>
+  <object id="106" name="WoodBox" type="WoodBox" x="416" y="176" width="32" height="32"/>
+  <object id="107" name="WoodBox" type="WoodBox" x="416" y="144" width="32" height="32"/>
   <object id="108" name="WoodBox" type="WoodBox" x="512" y="144" width="32" height="32"/>
   <object id="109" name="WoodBox" type="WoodBox" x="512" y="176" width="32" height="32"/>
   <object id="110" name="WoodBox" type="WoodBox" x="512" y="208" width="32" height="32"/>
@@ -64,13 +60,13 @@
   <object id="112" name="WoodBox" type="WoodBox" x="512" y="272" width="32" height="32"/>
   <object id="113" name="WoodBox" type="WoodBox" x="512" y="304" width="32" height="32"/>
   <object id="114" name="WoodBox" type="WoodBox" x="512" y="112" width="32" height="32"/>
-  <object id="115" name="WoodBox" type="WoodBox" x="592" y="272" width="32" height="32"/>
-  <object id="116" name="WoodBox" type="WoodBox" x="592" y="240" width="32" height="32"/>
-  <object id="117" name="WoodBox" type="WoodBox" x="592" y="208" width="32" height="32"/>
-  <object id="118" name="WoodBox" type="WoodBox" x="592" y="176" width="32" height="32"/>
-  <object id="119" name="WoodBox" type="WoodBox" x="592" y="144" width="32" height="32"/>
-  <object id="120" name="WoodBox" type="WoodBox" x="592" y="112" width="32" height="32"/>
-  <object id="121" name="WoodBox" type="WoodBox" x="592" y="80" width="32" height="32"/>
+  <object id="115" name="WoodBox" type="WoodBox" x="608" y="272" width="32" height="32"/>
+  <object id="116" name="WoodBox" type="WoodBox" x="608" y="240" width="32" height="32"/>
+  <object id="117" name="WoodBox" type="WoodBox" x="608" y="208" width="32" height="32"/>
+  <object id="118" name="WoodBox" type="WoodBox" x="608" y="176" width="32" height="32"/>
+  <object id="119" name="WoodBox" type="WoodBox" x="608" y="144" width="32" height="32"/>
+  <object id="120" name="WoodBox" type="WoodBox" x="608" y="112" width="32" height="32"/>
+  <object id="121" name="WoodBox" type="WoodBox" x="608" y="80" width="32" height="32"/>
   <object id="122" name="Snowflake" type="Snowflake" x="608" y="16" width="32" height="32"/>
   <object id="123" type="OutofBounds" x="0" y="352" width="640" height="16"/>
  </objectgroup>

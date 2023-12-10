@@ -23,26 +23,26 @@
         },
         "Endless-1.tmx": {
             "expandedObjectLayers": [
-                3,
-                2
+                2,
+                3
             ],
             "scale": 1,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 328,
-                "y": 210
+                "x": 327,
+                "y": 209
             }
         },
         "Endless-2.tmx": {
             "expandedObjectLayers": [
-                3,
-                2
+                2,
+                3
             ],
             "scale": 1.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 330.66666666666663,
-                "y": 299.33333333333326
+                "x": 330,
+                "y": 122
             }
         },
         "Endless-3.tmx": {
@@ -59,50 +59,50 @@
         },
         "Endless-4.tmx": {
             "expandedObjectLayers": [
-                3,
-                2
+                2,
+                3
             ],
             "scale": 1.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 300,
-                "y": 250
+                "x": 299.3333333333333,
+                "y": 249.3333333333333
             }
         },
         "Endless-5.tmx": {
             "expandedObjectLayers": [
-                3,
-                2
+                2,
+                3
             ],
             "scale": 1.5,
-            "selectedLayer": 1,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 320.66666666666663,
-                "y": 242.66666666666669
+                "x": 318.66666666666663,
+                "y": 64.66666666666669
             }
         },
         "Endless-6.tmx": {
             "expandedObjectLayers": [
-                3,
-                2
+                2,
+                3
             ],
             "scale": 1.5,
-            "selectedLayer": 1,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 318.66666666666663,
-                "y": 249.3333333333333
+                "x": 317.3333333333333,
+                "y": 248
             }
         },
         "Endless-7.tmx": {
             "expandedObjectLayers": [
-                3,
-                2
+                2,
+                3
             ],
-            "scale": 1.5,
-            "selectedLayer": 1,
+            "scale": 2,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 314.66666666666663,
-                "y": 222.66666666666669
+                "x": 307.5,
+                "y": 215.5
             }
         },
         "Ground_Terrain.tsx": {

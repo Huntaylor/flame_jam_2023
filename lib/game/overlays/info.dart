@@ -44,7 +44,7 @@ class InfoView extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(
-                      height: 20,
+                      height: 16,
                     ),
                     const Text(
                       'Ice Cracking sound is a royalty-free sfx from\n Pixaby - pixabay.com, by GregorQuendel_SoundDesign',
@@ -55,7 +55,7 @@ class InfoView extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(
-                      height: 20,
+                      height: 16,
                     ),
                     const Text(
                       'Land of 8 Bits is a royalty-free song by Stephen Bennett from\n https://www.fesliyanstudios.com/',
@@ -66,7 +66,7 @@ class InfoView extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(
-                      height: 20,
+                      height: 16,
                     ),
                     const Text(
                       'The Pixel Artwork was created by myself',
@@ -77,7 +77,7 @@ class InfoView extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(
-                      height: 20,
+                      height: 16,
                     ),
                     SizedBox(
                       child: ElevatedButton(
@@ -98,7 +98,7 @@ class InfoView extends StatelessWidget {
                     ),
                     const Expanded(
                       child: Text(
-                        'HOW TO PLAY\n Tap to jump, or press the spacebar\nAvoid Hot enemies like the Sunrays or Magma blocks\nStay Cold by collecting snowflakes!\nYou can also jump on top of wooden boxes,\n but you might make them Cold.',
+                        '-HOW TO PLAY-\n Tap to jump, or press the spacebar\nAvoid Hot enemies like the Sunrays or Magma blocks\nStay Cold by collecting snowflakes!\nYou can also jump on top of wooden boxes,\n but you might make them Cold.',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: whiteTextColor,
