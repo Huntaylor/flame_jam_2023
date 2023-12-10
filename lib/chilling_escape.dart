@@ -49,7 +49,7 @@ class ChillingEscape extends FlameGame
 
   @override
   FutureOr<void> onLoad() async {
-    await images.loadAllImages();
+    // await images.loadAllImages();
 
     _loadLevel();
 

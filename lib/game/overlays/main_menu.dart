@@ -1,3 +1,4 @@
+import 'package:flame/flame.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flame_jam_2023/game/overlays/background.dart';
 import 'package:flame_jam_2023/game/overlays/info.dart';
@@ -16,6 +17,7 @@ class MainMenu extends StatefulWidget {
 
 class _MainMenuState extends State<MainMenu> {
   bool isPlaying = true;
+  bool isLoading = false;
   @override
   void initState() {
     FlameAudio.bgm.initialize();
@@ -64,7 +66,7 @@ class _MainMenuState extends State<MainMenu> {
                       ),
                     ),
                     const SizedBox(
-                      height: 40,
+                      height: 16,
                     ),
                     const Text(
                       'Music',
@@ -83,12 +85,22 @@ class _MainMenuState extends State<MainMenu> {
                       },
                     ),
                     const SizedBox(
-                      height: 40,
+                      height: 16,
                     ),
                     SizedBox(
                       child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.of(context).push(MyGame.route());
+                        onPressed: () async {
+                          setState(() async {
+                            isLoading = true;
+                            await Flame.images.loadAllImages().whenComplete(
+                              () {
+                                isLoading = false;
+                                Navigator.of(context).push(
+                                  MyGame.route(),
+                                );
+                              },
+                            );
+                          });
                         },
                         child: const Text(
                           'Play',
@@ -130,6 +142,7 @@ class _MainMenuState extends State<MainMenu> {
                         ),
                       ),
                     ),
+                    if (isLoading) const LinearProgressIndicator()
                   ],
                 ),
               ),

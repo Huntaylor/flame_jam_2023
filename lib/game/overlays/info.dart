@@ -44,7 +44,7 @@ class InfoView extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(
-                      height: 16,
+                      height: 10,
                     ),
                     const Text(
                       'Ice Cracking sound is a royalty-free sfx from\n Pixaby - pixabay.com, by GregorQuendel_SoundDesign',
@@ -55,7 +55,7 @@ class InfoView extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(
-                      height: 16,
+                      height: 10,
                     ),
                     const Text(
                       'Land of 8 Bits is a royalty-free song by Stephen Bennett from\n https://www.fesliyanstudios.com/',
@@ -66,7 +66,7 @@ class InfoView extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(
-                      height: 16,
+                      height: 10,
                     ),
                     const Text(
                       'The Pixel Artwork was created by myself',
