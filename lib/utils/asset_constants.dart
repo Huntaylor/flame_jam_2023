@@ -44,6 +44,9 @@ class AssetConstants {
   ///Game Over Overlay
   static const String gameOver = 'GameOver';
 
+  ///Pause Menu Overlay
+  static const String pauseMenu = 'PauseMenu';
+
   ///Main Menu Overlay
   static const String mainMenu = 'MainMenu';
 
@@ -87,4 +90,7 @@ class AssetConstants {
 
   ///Pickup audio
   static const String pickUpAudio = 'pickup_snowflake.wav';
+
+  ///PauseButton Sprite
+  static const String pauseButtonSprite = 'Background/pause_button.png';
 }

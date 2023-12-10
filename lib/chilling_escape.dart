@@ -1,8 +1,8 @@
 import 'dart:async';
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flame/camera.dart';
 import 'package:flame/components.dart';
-import 'package:flame_audio/flame_audio.dart';
 import 'package:flame_jam_2023/components/background_tile.dart';
 import 'package:flame_jam_2023/components/player.dart';
 import 'package:flame_jam_2023/game/overlays/game_hud.dart';
@@ -25,6 +25,7 @@ class ChillingEscape extends FlameGame
   int currentMapIndex = 0;
   int snowflakesCollected = 0;
   bool playSounds = true;
+  AudioPlayer audioPlayer = AudioPlayer();
 
   late Level level;
 

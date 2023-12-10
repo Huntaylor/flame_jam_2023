@@ -40,9 +40,13 @@ class SnowflakeSprite extends SpriteComponent with HasGameRef<ChillingEscape> {
     sprite = Sprite(snowflakeImage);
   }
 
-  void collideWithPlayer() {
+  void collideWithPlayer() async {
     if (!_collected) {
       if (game.playSounds) {
+        // await game.audioPlayer.play(
+        //   DeviceFileSource(AssetConstants.jumpAudio),
+        //   volume: game.soundVolume,
+        // );
         FlameAudio.play(
           AssetConstants.pickUpAudio,
           volume: game.soundVolume,

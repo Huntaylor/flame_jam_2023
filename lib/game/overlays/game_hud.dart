@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flame/components.dart';
+import 'package:flame/input.dart';
 import 'package:flame_jam_2023/chilling_escape.dart';
 import 'package:flame_jam_2023/utils/asset_constants.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +18,7 @@ class GameHud extends PositionComponent with HasGameRef<ChillingEscape> {
   });
 
   late TextComponent _scoreTextComponent;
+  late ButtonComponent _pauseButton;
 
   @override
   FutureOr<void> onLoad() async {
@@ -35,7 +37,24 @@ class GameHud extends PositionComponent with HasGameRef<ChillingEscape> {
       ),
     );
     add(_scoreTextComponent);
-
+    final pauseImage = game.images.fromCache(AssetConstants.pauseButtonSprite);
+    _pauseButton = ButtonComponent(
+      button: SpriteComponent(
+        sprite: Sprite(
+          pauseImage,
+        ),
+      ),
+      onPressed: () {
+        game.pauseEngine();
+        game.overlays.add(AssetConstants.pauseMenu);
+      },
+      anchor: Anchor.center,
+      position: Vector2(
+        game.size.x - 120,
+        20,
+      ),
+    );
+    add(_pauseButton);
     final snowflakeSprite =
         await game.loadSprite(AssetConstants.snowflakeSprie);
     add(

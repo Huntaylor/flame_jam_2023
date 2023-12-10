@@ -91,7 +91,7 @@ class Player extends SpriteGroupComponent
 
   @override
   void onCollisionStart(
-      Set<Vector2> intersectionPoints, PositionComponent other) {
+      Set<Vector2> intersectionPoints, PositionComponent other) async {
     if (other is SnowflakeSprite) {
       other.collideWithPlayer();
       _collectedSnowflake();
@@ -115,7 +115,6 @@ class Player extends SpriteGroupComponent
     if (other is CollisionBlock) {
       isInAir = position.y < other.y;
       if (game.worldVelocity.y > 0) {
-        // _gravity = 0;
         game.worldVelocity.y = 0;
 
         position.y = other.y - (height / 2) - hitbox.y;
@@ -128,7 +127,6 @@ class Player extends SpriteGroupComponent
 
       isInAir = position.y < other.y;
       if (game.worldVelocity.y > 0 && isInAir) {
-        // _gravity = 0;
         game.worldVelocity.y = 0;
 
         position.y = other.y - (height / 2) - hitbox.y;
@@ -195,13 +193,16 @@ class Player extends SpriteGroupComponent
       _playerJumped(dt);
     }
     game.worldVelocity.x = horizontalMovement * game.worldSpeed;
-    // Delta time, dt, allows us to check how many times we have updated in a
-    // second, then divide by the same amount to stay consistant
+
     position.x += game.worldVelocity.x * dt;
   }
 
-  void _playerJumped(dt) {
+  void _playerJumped(dt) async {
     if (game.playSounds) {
+      // await game.audioPlayer.play(
+      //   DeviceFileSource(AssetConstants.jumpAudio),
+      //   volume: game.soundVolume,
+      // );
       FlameAudio.play(
         AssetConstants.jumpAudio,
         volume: game.soundVolume,
