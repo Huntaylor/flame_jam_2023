@@ -14,20 +14,32 @@ class AssetConstants {
   ///'Terrain/$name.png'
   static String boxSprite(String name) => 'Terrain/$name.png';
 
+  ///'snowflake.png'
+  static const String snowflakeSprie = 'Items/snowflake.png';
+
   ///'WoodBox.png'
-  static String normalBoxSprite = 'WoodBox';
+  static const String normalBoxSprite = 'WoodBox';
 
   ///'FrozenWoodBox.png'
-  static String frozenBoxSprite = 'FrozenWoodBox';
+  static const String frozenBoxSprite = 'FrozenWoodBox';
 
   ///'Background/snowy.png'
-  static String backgroundTile = 'Background/snowy.png';
+  static const String backgroundTile = 'Background/snowy.png';
+
+  ///'Terrain/sunshine.png'
+  static const String sunshineSprite = 'Terrain/sunshine.png';
+
+  ///'Sunshine Collisions'
+  static const String sunshine = 'Sunshine';
 
   ///'Endless-1.tmx'
   static const String endless1 = 'Endless-1.tmx';
 
   ///'Endless-2.tmx'
   static const String endless2 = 'Endless-2.tmx';
+
+  ///'Endless-3.tmx'
+  static const String endless3 = 'Endless-3.tmx';
 
   ///Game Over Overlay
   static const String gameOver = 'GameOver';
@@ -56,6 +68,6 @@ class AssetConstants {
   ///Platform collisions
   static const String platform = 'Platform';
 
-  ///NextLevel collisions
-  static const String nextLevel = 'NextLevel';
+  ///Snowflake collisions
+  static const String snowflake = 'Snowflake';
 }

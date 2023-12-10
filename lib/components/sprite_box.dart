@@ -12,20 +12,24 @@ enum SpriteState {
 
 class SpriteBox extends SpriteGroupComponent
     with HasGameRef<ChillingEscape>, CollisionCallbacks {
+  final Vector2 gridPosition;
+  double xOffset;
   SpriteBox({
-    required this.name,
-    super.position,
+    required this.gridPosition,
+    required this.xOffset,
     super.current,
     super.size,
   });
-  final String name;
   late final Sprite normalSprite;
   late final Sprite frozenSprite;
   bool isFrozen = false;
 
   @override
   FutureOr<void> onLoad() {
-    debugMode = true;
+    position = Vector2(
+      gridPosition.x + xOffset,
+      gridPosition.y,
+    );
     _loadSprites();
     add(
       RectangleHitbox(

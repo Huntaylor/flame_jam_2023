@@ -7,6 +7,7 @@
     "expandedProjectPaths": [
         "."
     ],
+    "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
         "Chilling Escape.tsx": {
             "scaleInDock": 1,
@@ -14,25 +15,34 @@
         },
         "Endless-1.tmx": {
             "expandedObjectLayers": [
-                2,
-                3
-            ],
-            "scale": 1,
-            "selectedLayer": 1,
-            "viewCenter": {
-                "x": 466,
-                "y": 305
-            }
-        },
-        "Endless-2.tmx": {
-            "expandedObjectLayers": [
+                3,
                 2
             ],
             "scale": 1.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 314,
-                "y": 278
+                "x": 320,
+                "y": 184
+            }
+        },
+        "Endless-2.tmx": {
+            "expandedObjectLayers": [
+                3,
+                2
+            ],
+            "scale": 0.75,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 320,
+                "y": 184
+            }
+        },
+        "Endless-3.tmx": {
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 404,
+                "y": 281
             }
         },
         "Ground_Terrain.tsx": {
@@ -61,14 +71,15 @@
     "map.tileWidth": 16,
     "map.width": 40,
     "openFiles": [
-        "Endless-1.tmx"
+        "Endless-1.tmx",
+        "Endless-2.tmx"
     ],
     "project": "hot_and_cold.tiled-project",
     "recentFiles": [
+        "Endless-2.tmx",
         "Endless-1.tmx",
         "Ground_Terrain.tsx",
         "Chilling Escape.tsx",
-        "Endless-2.tmx",
         "endless_1.tmx",
         "Terrain (16x16).tsx"
     ],

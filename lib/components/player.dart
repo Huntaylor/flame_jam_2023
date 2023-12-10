@@ -2,8 +2,9 @@ import 'dart:async';
 
 import 'package:flame_jam_2023/chilling_escape.dart';
 import 'package:flame_jam_2023/components/collision_block.dart';
-import 'package:flame_jam_2023/components/next_level_collision.dart';
+import 'package:flame_jam_2023/components/snowflake.dart';
 import 'package:flame_jam_2023/components/sprite_box.dart';
+import 'package:flame_jam_2023/components/sunshine.dart';
 import 'package:flame_jam_2023/utils/asset_constants.dart';
 import 'package:flame/effects.dart';
 import 'package:flame/geometry.dart';
@@ -36,13 +37,14 @@ class Player extends SpriteGroupComponent
   late final Sprite meltedSprite;
   late RectangleHitbox hitbox;
   late RotateEffect rotate;
-  PlayerState playerState = PlayerState.normal;
+  late PlayerState playerState;
 
   final double _jumpForce = 415;
   final double _terminalVelocity = 500;
   final double _gravity = 21.8;
   final double rotationSpeed = 2.5;
-  Vector2 maxSize = Vector2.zero();
+  Vector2 maxSize = Vector2.all(32);
+  Vector2 currentSize = Vector2.zero();
   Vector2 spawnPoint = Vector2.zero();
   double fixedDeltaTime = 1 / 60;
   double accumulatedTime = 0;
@@ -50,11 +52,12 @@ class Player extends SpriteGroupComponent
   bool hasJumped = false;
   bool isOnGround = false;
   bool isInAir = false;
+  bool collectedSnowflake = false;
 
   @override
   FutureOr<void> onLoad() {
-    maxSize = size;
-    debugMode = true;
+    playerState = PlayerState.normal;
+    currentSize = size;
     _loadSprites();
     hitbox = RectangleHitbox(
       isSolid: true,
@@ -86,9 +89,11 @@ class Player extends SpriteGroupComponent
   @override
   void onCollisionStart(
       Set<Vector2> intersectionPoints, PositionComponent other) {
-    if (other is NextLevelCollision) {
-      game.loadNextLevel();
+    if (other is SnowflakeSprite) {
+      other.collideWithPlayer();
+      _collectedSnowflake();
     }
+
     super.onCollisionStart(intersectionPoints, other);
   }
 
@@ -117,6 +122,9 @@ class Player extends SpriteGroupComponent
         isInAir = false;
         isOnGround = true;
       }
+    }
+    if (other is Sunshine) {
+      _meltPlayer();
     }
     if (other is SpriteBox || other is PlatformBlock) {
       isInAir = position.y < other.y;
@@ -201,9 +209,9 @@ class Player extends SpriteGroupComponent
 
   void _meltPlayer() async {
     // isShrinking = true;
-    final shrink = size / 1.0029;
+    currentSize = size / 1.0029;
     // if (isShrinking) {
-    size = shrink;
+    size = currentSize;
 
     // isShrinking = false;
     // }
@@ -223,5 +231,18 @@ class Player extends SpriteGroupComponent
     }
 
     current = playerState;
+  }
+
+  void _collectedSnowflake() {
+    if (currentSize.x <= maxSize.x) {
+      currentSize = currentSize * 1.05;
+      size = currentSize;
+
+      if (size.x >= maxSize.x) {
+        size = Vector2.all(32);
+      }
+    } else {
+      size = Vector2.all(32);
+    }
   }
 }

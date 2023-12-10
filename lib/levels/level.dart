@@ -2,41 +2,68 @@ import 'dart:async';
 
 import 'package:flame_jam_2023/chilling_escape.dart';
 import 'package:flame_jam_2023/components/collision_block.dart';
-import 'package:flame_jam_2023/components/next_level_collision.dart';
 import 'package:flame_jam_2023/components/player.dart';
+import 'package:flame_jam_2023/components/snowflake.dart';
 import 'package:flame_jam_2023/components/sprite_box.dart';
+import 'package:flame_jam_2023/components/sunshine.dart';
 import 'package:flame_jam_2023/utils/asset_constants.dart';
 import 'package:flame/events.dart';
 import 'package:flame/components.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 
 class Level extends World with HasGameRef<ChillingEscape>, TapCallbacks {
-  final String levelName;
-  late TiledComponent level;
+  // final String initialLevelName;
+  // late TiledComponent initialLevel;
   final Player player;
-  final bool isFirst;
+  final List<String> levels;
+  List<TiledComponent> loadedLevels = [];
 
   Level({
-    required this.levelName,
+    // required this.initialLevelName,
+    required this.levels,
     super.children,
     super.priority = -10,
     required this.player,
-    this.isFirst = false,
   });
 
   @override
   FutureOr<void> onLoad() async {
-    level = await TiledComponent.load(
-      levelName,
-      Vector2.all(16),
-    );
+    // initialLevel = await TiledComponent.load(
+    //   initialLevelName,
+    //   Vector2.all(16),
+    // );
+    final segmentsToLoad = (game.size.x / 640).ceil();
+    print(segmentsToLoad);
+    segmentsToLoad.clamp(0, levels.length);
 
-    add(level);
+    for (var i = 0; i <= segmentsToLoad; i++) {
+      await loadGameSegments(i, (640 * i).toDouble());
+    }
 
-    _spawningObjects();
-    _addCollisions();
+    // addAll(
+    //   [
+    //     // initialLevel,
+    //     ...loadedLevels,
+    //   ],
+    // );
+
+    // _spawningObjects(initialLevel);
+    // _addCollisions(initialLevel);
 
     return super.onLoad();
+  }
+
+  Future<void> loadGameSegments(
+      int segmentIndex, double xPositionOffset) async {
+    final level = await TiledComponent.load(
+      levels[segmentIndex],
+      Vector2.all(16),
+    );
+    level.position = Vector2(xPositionOffset, 0);
+    // loadedLevels.add(level);
+    _addCollisions(level, xPositionOffset);
+    _spawningObjects(level, xPositionOffset);
+    add(level);
   }
 
   @override
@@ -47,7 +74,7 @@ class Level extends World with HasGameRef<ChillingEscape>, TapCallbacks {
     super.onTapDown(event);
   }
 
-  void _spawningObjects() {
+  void _spawningObjects(TiledComponent level, double xPositionOffset) {
     final spawnPointLayer =
         level.tileMap.getLayer<ObjectGroup>(AssetConstants.spawnpoints);
 
@@ -55,9 +82,6 @@ class Level extends World with HasGameRef<ChillingEscape>, TapCallbacks {
       for (final spawnPoint in spawnPointLayer.objects) {
         switch (spawnPoint.class_) {
           case AssetConstants.player:
-            if (!isFirst) {
-              break;
-            }
             player.position = Vector2(
               spawnPoint.x,
               spawnPoint.y,
@@ -67,8 +91,36 @@ class Level extends World with HasGameRef<ChillingEscape>, TapCallbacks {
             break;
           case AssetConstants.woodBox:
             final block = SpriteBox(
-              name: spawnPoint.name,
-              position: Vector2(
+              xOffset: xPositionOffset,
+              gridPosition: Vector2(
+                spawnPoint.x,
+                spawnPoint.y,
+              ),
+              size: Vector2(
+                spawnPoint.width,
+                spawnPoint.height,
+              ),
+            );
+            add(block);
+            break;
+          case AssetConstants.snowflake:
+            final block = SnowflakeSprite(
+              xOffset: xPositionOffset,
+              gridPosition: Vector2(
+                spawnPoint.x,
+                spawnPoint.y,
+              ),
+              size: Vector2(
+                spawnPoint.width,
+                spawnPoint.height,
+              ),
+            );
+            add(block);
+            break;
+          case AssetConstants.sunshine:
+            final block = Sunshine(
+              xOffset: xPositionOffset,
+              gridPosition: Vector2(
                 spawnPoint.x,
                 spawnPoint.y,
               ),
@@ -85,7 +137,7 @@ class Level extends World with HasGameRef<ChillingEscape>, TapCallbacks {
     }
   }
 
-  void _addCollisions() {
+  void _addCollisions(TiledComponent level, double xPositionOffset) {
     final collisionsLayer =
         level.tileMap.getLayer<ObjectGroup>(AssetConstants.collisions);
 
@@ -93,11 +145,18 @@ class Level extends World with HasGameRef<ChillingEscape>, TapCallbacks {
       for (final collision in collisionsLayer.objects) {
         switch (collision.class_) {
           case AssetConstants.lava:
+            print('added lava');
             final block = LavaBlock(
-              position: Vector2(
+              xOffset: xPositionOffset,
+              gridPosition: Vector2(
                 collision.x,
                 collision.y,
               ),
+              // position: Vector2(
+              //   collision.x,
+              //   collision.y,
+              // ),
+
               size: Vector2(
                 collision.width,
                 collision.height,
@@ -106,23 +165,15 @@ class Level extends World with HasGameRef<ChillingEscape>, TapCallbacks {
             add(block);
           case AssetConstants.ground:
             final block = CollisionBlock(
-              position: Vector2(
+              xOffset: xPositionOffset,
+              gridPosition: Vector2(
                 collision.x,
                 collision.y,
               ),
-              size: Vector2(
-                collision.width,
-                collision.height,
-              ),
-            );
-            add(block);
-            break;
-          case AssetConstants.nextLevel:
-            final block = NextLevelCollision(
-              position: Vector2(
-                collision.x,
-                collision.y,
-              ),
+              // position: Vector2(
+              //   collision.x,
+              //   collision.y,
+              // ),
               size: Vector2(
                 collision.width,
                 collision.height,
@@ -133,10 +184,15 @@ class Level extends World with HasGameRef<ChillingEscape>, TapCallbacks {
           case AssetConstants.platform:
           default:
             final block = PlatformBlock(
-              position: Vector2(
+              xOffset: xPositionOffset,
+              gridPosition: Vector2(
                 collision.x,
                 collision.y,
               ),
+              // position: Vector2(
+              //   collision.x,
+              //   collision.y,
+              // ),
               size: Vector2(
                 collision.width,
                 collision.height,
