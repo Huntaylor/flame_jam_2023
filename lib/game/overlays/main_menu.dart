@@ -142,7 +142,11 @@ class _MainMenuState extends State<MainMenu> {
                         ),
                       ),
                     ),
-                    if (isLoading) const LinearProgressIndicator()
+                    if (isLoading)
+                      const SizedBox(
+                        width: 150,
+                        child: LinearProgressIndicator(),
+                      )
                   ],
                 ),
               ),
