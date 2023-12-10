@@ -26,7 +26,7 @@ class ChillingEscape extends FlameGame
   late Level level;
 
   List<String> mapPaths = [
-    // AssetConstants.endless1,
+    AssetConstants.endless1,
     AssetConstants.endless2,
     AssetConstants.endless3,
     // AssetConstants.endless2,

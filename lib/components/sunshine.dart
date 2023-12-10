@@ -24,7 +24,7 @@ class Sunshine extends SpriteComponent with HasGameRef<ChillingEscape> {
     priority = 15;
     _loadSprites();
     add(
-      CircleHitbox(
+      RectangleHitbox(
         isSolid: true,
         collisionType: CollisionType.passive,
       ),
