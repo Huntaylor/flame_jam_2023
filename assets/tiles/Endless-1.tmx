@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="60" height="23" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="28">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="60" height="23" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="30">
  <tileset firstgid="1" source="Chilling Escape.tsx"/>
  <tileset firstgid="243" source="Ground_Terrain.tsx"/>
  <layer id="1" name="Background" width="60" height="23">
@@ -30,9 +30,9 @@
 </data>
  </layer>
  <objectgroup id="2" name="Collisions">
-  <object id="15" x="0" y="336" width="320" height="16"/>
-  <object id="17" x="416" y="336" width="224" height="16"/>
-  <object id="18" x="800" y="336" width="160" height="32"/>
+  <object id="15" type="Ground" x="0" y="336" width="320" height="16"/>
+  <object id="17" type="Ground" x="416" y="336" width="224" height="16"/>
+  <object id="18" type="Ground" x="800" y="336" width="160" height="32"/>
   <object id="19" name="Platform" type="Platform" x="304" y="304" width="64" height="16"/>
   <object id="21" name="Platform" type="Platform" x="352" y="272" width="64" height="16"/>
   <object id="22" name="Platform" type="Platform" x="624" y="304" width="64" height="16"/>
@@ -40,9 +40,11 @@
   <object id="24" name="Platform" type="Platform" x="720" y="240" width="64" height="16"/>
   <object id="25" type="Lava" x="640" y="336" width="160" height="16"/>
   <object id="27" type="Lava" x="320" y="336" width="96" height="16"/>
+  <object id="29" type="NextLevel" x="480" y="0" width="16" height="368"/>
  </objectgroup>
  <objectgroup id="3" name="Spawnpoints">
-  <object id="2" name="Player" type="Player" x="48" y="288" width="32" height="32"/>
+  <object id="2" name="Player" type="Player" x="48" y="304" width="32" height="32"/>
   <object id="16" name="WoodBox" type="WoodBox" x="176" y="304" width="32" height="32"/>
+  <object id="28" name="WoodBox" type="WoodBox" x="512" y="304" width="32" height="32"/>
  </objectgroup>
 </map>

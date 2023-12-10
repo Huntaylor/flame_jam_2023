@@ -1,7 +1,8 @@
 import 'package:flame/game.dart';
 import 'package:flame_jam_2023/chilling_escape.dart';
+import 'package:flame_jam_2023/game/overlays/game_over.dart';
 import 'package:flame_jam_2023/game/overlays/main_menu.dart';
-import 'package:flutter/foundation.dart';
+import 'package:flame_jam_2023/utils/asset_constants.dart';
 import 'package:flutter/material.dart';
 
 class MyGame extends StatelessWidget {
@@ -28,20 +29,21 @@ class GameView extends StatelessWidget {
       body: Stack(
         alignment: Alignment.center,
         children: [
-          if (kDebugMode)
-            GameWidget(game: ChillingEscape())
-          else
-            GameWidget<ChillingEscape>.controlled(
-              // backgroundBuilder: (context) =>,
-              gameFactory: () => ChillingEscape(),
-              overlayBuilderMap: {
-                'MainMenu': (_, game) {
-                  game.pauseEngine();
-                  return MainMenu(game: game);
-                }
+          // if (kDebugMode)
+          //   GameWidget(game: ChillingEscape())
+          // else
+          GameWidget<ChillingEscape>.controlled(
+            // backgroundBuilder: (context) =>,
+            gameFactory: () => ChillingEscape(),
+            overlayBuilderMap: {
+              AssetConstants.mainMenu: (_, game) {
+                game.pauseEngine();
+                return MainMenu(game: game);
               },
-              initialActiveOverlays: const ['MainMenu'],
-            ),
+              AssetConstants.gameOver: (_, game) => GameOver(game: game),
+            },
+            // initialActiveOverlays: const [AssetConstants.mainMenu],
+          ),
 
           // Add additional ui components
         ],

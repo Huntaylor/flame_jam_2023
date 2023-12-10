@@ -17,23 +17,26 @@
                 2,
                 3
             ],
-            "scale": 2,
-            "selectedLayer": 0,
+            "scale": 1,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 381.5,
-                "y": 322
+                "x": 466,
+                "y": 305
             }
         },
         "Endless-2.tmx": {
-            "scale": 1,
-            "selectedLayer": 0,
+            "expandedObjectLayers": [
+                2
+            ],
+            "scale": 1.5,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 399,
-                "y": 141
+                "x": 314,
+                "y": 278
             }
         },
         "Ground_Terrain.tsx": {
-            "scaleInDock": 3,
+            "scaleInDock": 2,
             "scaleInEditor": 5.5
         },
         "Terrain (16x16).tsx": {
@@ -58,13 +61,12 @@
     "map.tileWidth": 16,
     "map.width": 40,
     "openFiles": [
-        "Endless-1.tmx",
-        "Ground_Terrain.tsx"
+        "Endless-1.tmx"
     ],
     "project": "hot_and_cold.tiled-project",
     "recentFiles": [
-        "Ground_Terrain.tsx",
         "Endless-1.tmx",
+        "Ground_Terrain.tsx",
         "Chilling Escape.tsx",
         "Endless-2.tmx",
         "endless_1.tmx",

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flame_jam_2023/chilling_escape.dart';
 import 'package:flame_jam_2023/components/collision_block.dart';
+import 'package:flame_jam_2023/components/next_level_collision.dart';
 import 'package:flame_jam_2023/components/sprite_box.dart';
 import 'package:flame_jam_2023/utils/asset_constants.dart';
 import 'package:flame/effects.dart';
@@ -11,18 +12,17 @@ import 'package:flame/components.dart';
 import 'package:flutter/services.dart';
 
 enum PlayerState {
-  jumping,
-  falling,
-  idle,
-  melting,
-  hit,
+  normal,
+  halfwayMelted,
+  almostMelted,
+  melted,
 }
 
-class Player extends SpriteComponent
+class Player extends SpriteGroupComponent
     with HasGameRef<ChillingEscape>, KeyboardHandler, CollisionCallbacks {
   Player({
     super.position,
-    super.sprite,
+    super.current,
     super.scale,
   }) : super(
           anchor: Anchor.center,
@@ -30,16 +30,19 @@ class Player extends SpriteComponent
           size: Vector2.all(32),
         );
 
-  late final Sprite idleSprite;
+  late final Sprite normalSprite;
+  late final Sprite halfwayMeltedSprite;
+  late final Sprite almostMeltedSprite;
+  late final Sprite meltedSprite;
   late RectangleHitbox hitbox;
   late RotateEffect rotate;
-  PlayerState playerState = PlayerState.idle;
+  PlayerState playerState = PlayerState.normal;
 
   final double _jumpForce = 415;
   final double _terminalVelocity = 500;
   final double _gravity = 21.8;
   final double rotationSpeed = 2.5;
-  Vector2 maxScale = Vector2.zero();
+  Vector2 maxSize = Vector2.zero();
   Vector2 spawnPoint = Vector2.zero();
   double fixedDeltaTime = 1 / 60;
   double accumulatedTime = 0;
@@ -47,11 +50,10 @@ class Player extends SpriteComponent
   bool hasJumped = false;
   bool isOnGround = false;
   bool isInAir = false;
-  bool isMelting = false;
 
   @override
   FutureOr<void> onLoad() {
-    maxScale = scale;
+    maxSize = size;
     debugMode = true;
     _loadSprites();
     hitbox = RectangleHitbox(
@@ -66,7 +68,7 @@ class Player extends SpriteComponent
   void update(double dt) {
     accumulatedTime += dt;
     while (accumulatedTime >= fixedDeltaTime) {
-      if (isMelting) _meltPlayer();
+      _updatePlayerState();
       _updatePlayerMovement(fixedDeltaTime);
       _applyGravity(fixedDeltaTime);
       accumulatedTime -= fixedDeltaTime;
@@ -82,10 +84,30 @@ class Player extends SpriteComponent
   }
 
   @override
+  void onCollisionStart(
+      Set<Vector2> intersectionPoints, PositionComponent other) {
+    if (other is NextLevelCollision) {
+      game.loadNextLevel();
+    }
+    super.onCollisionStart(intersectionPoints, other);
+  }
+
+  @override
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
-    bool isLava = (other is LavaBlock);
-    isMelting = isLava;
-    if (other is LavaBlock) {
+    if (other is CollisionBlock) {
+      isInAir = position.y < other.y;
+      if (game.worldVelocity.y > 0) {
+        // _gravity = 0;
+        game.worldVelocity.y = 0;
+
+        position.y = other.y - (height / 2) - hitbox.y;
+        isInAir = false;
+        isOnGround = true;
+      }
+    }
+    if (other is LavaBlock || other is LavaBlock && other is PlatformBlock) {
+      _meltPlayer();
+
       isInAir = position.y < other.y;
       if (game.worldVelocity.y > 0 && isInAir) {
         // _gravity = 0;
@@ -96,7 +118,6 @@ class Player extends SpriteComponent
         isOnGround = true;
       }
     }
-
     if (other is SpriteBox || other is PlatformBlock) {
       isInAir = position.y < other.y;
 
@@ -111,25 +132,33 @@ class Player extends SpriteComponent
         }
       }
     }
-    if (other is CollisionBlock) {
-      isInAir = position.y < other.y;
-      if (game.worldVelocity.y > 0) {
-        // _gravity = 0;
-        game.worldVelocity.y = 0;
-
-        position.y = other.y - (height / 2) - hitbox.y;
-        isInAir = false;
-        isOnGround = true;
-      }
-    }
     super.onCollision(intersectionPoints, other);
   }
 
   void _loadSprites() {
-    final iceImage = game.images.fromCache(AssetConstants.playerSprite);
-    idleSprite = Sprite(iceImage);
+    final iceImage = game.images.fromCache(AssetConstants.normalPlayerSprite);
+    normalSprite = Sprite(iceImage);
 
-    sprite = idleSprite;
+    final stage1Image =
+        game.images.fromCache(AssetConstants.stage1PlayerSprite);
+    halfwayMeltedSprite = Sprite(stage1Image);
+
+    final stage2Image =
+        game.images.fromCache(AssetConstants.stage2PlayerSprite);
+    almostMeltedSprite = Sprite(stage2Image);
+
+    final meltedImage =
+        game.images.fromCache(AssetConstants.meltedPlayerSprite);
+    meltedSprite = Sprite(meltedImage);
+
+    sprites = {
+      PlayerState.normal: normalSprite,
+      PlayerState.halfwayMelted: halfwayMeltedSprite,
+      PlayerState.almostMelted: almostMeltedSprite,
+      PlayerState.melted: meltedSprite,
+    };
+    // Set current animation
+    current = PlayerState.normal;
   }
 
   void _applyGravity(dt) {
@@ -170,7 +199,29 @@ class Player extends SpriteComponent
     add(rotate);
   }
 
-  void _meltPlayer() {
-    print(isMelting);
+  void _meltPlayer() async {
+    // isShrinking = true;
+    final shrink = size / 1.0029;
+    // if (isShrinking) {
+    size = shrink;
+
+    // isShrinking = false;
+    // }
+  }
+
+  void _updatePlayerState() {
+    PlayerState playerState = PlayerState.normal;
+
+    if (size.x <= 26) {
+      playerState = PlayerState.halfwayMelted;
+    }
+    if (size.x <= 20) {
+      playerState = PlayerState.almostMelted;
+    }
+    if (size.x <= 14) {
+      playerState = PlayerState.melted;
+    }
+
+    current = playerState;
   }
 }
