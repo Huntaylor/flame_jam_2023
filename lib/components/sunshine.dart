@@ -14,6 +14,7 @@ class Sunshine extends SpriteComponent with HasGameRef<ChillingEscape> {
     super.sprite,
     super.size,
   });
+  bool isPlaying = false;
 
   @override
   FutureOr<void> onLoad() {

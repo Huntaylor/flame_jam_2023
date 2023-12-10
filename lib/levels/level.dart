@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:flame_jam_2023/chilling_escape.dart';
 import 'package:flame_jam_2023/components/collision_block.dart';
@@ -12,8 +13,8 @@ import 'package:flame/components.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 
 class Level extends World with HasGameRef<ChillingEscape>, TapCallbacks {
-  final Player player;
   final List<String> levels;
+  final Player player;
   List<TiledComponent> loadedLevels = [];
 
   Level({
@@ -28,9 +29,11 @@ class Level extends World with HasGameRef<ChillingEscape>, TapCallbacks {
     final segmentsToLoad = (game.size.x / 640).ceil();
     segmentsToLoad.clamp(0, levels.length);
 
-    for (var i = 0; i <= levels.length - 1; i++) {
+    for (var i = 0; i <= segmentsToLoad; i++) {
       await loadGameSegments(i, (640 * i).toDouble());
     }
+
+    levels.removeAt(0);
 
     return super.onLoad();
   }
@@ -65,6 +68,10 @@ class Level extends World with HasGameRef<ChillingEscape>, TapCallbacks {
       removeAll(pastLevels);
       pastLevels.removeAt(index);
       loadedLevels.removeAt(index);
+      loadGameSegments(
+        Random().nextInt(levels.length),
+        loadedLevels.last.x + 640,
+      );
     }
 
     super.update(dt);
@@ -163,6 +170,20 @@ class Level extends World with HasGameRef<ChillingEscape>, TapCallbacks {
             add(block);
           case AssetConstants.ground:
             final block = CollisionBlock(
+              xOffset: xPositionOffset,
+              gridPosition: Vector2(
+                collision.x,
+                collision.y,
+              ),
+              size: Vector2(
+                collision.width,
+                collision.height,
+              ),
+            );
+            add(block);
+            break;
+          case AssetConstants.outOfBounds:
+            final block = OutOfBoundsBlock(
               xOffset: xPositionOffset,
               gridPosition: Vector2(
                 collision.x,

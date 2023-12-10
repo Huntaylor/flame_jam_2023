@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="40" height="23" tilewidth="16" tileheight="16" infinite="0" nextlayerid="4" nextobjectid="9">
- <tileset firstgid="1" source="Ground_Terrain.tsx"/>
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="40" height="23" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="62">
+ <tileset firstgid="1" source="Chilling Escape.tsx"/>
+ <tileset firstgid="243" source="Ground_Terrain.tsx"/>
  <layer id="1" name="Background" width="40" height="23">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -18,26 +19,37 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,
-3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3
+0,0,0,0,0,0,0,0,0,0,0,0,256,256,254,255,256,256,0,0,0,0,0,0,0,0,0,0,261,261,261,261,261,261,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,258,259,0,0,260,0,0,0,0,0,0,0,0,0,0,0,261,261,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,258,259,0,0,0,254,255,260,260,260,0,0,260,260,260,0,261,261,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,258,259,0,0,0,258,259,260,0,260,0,0,260,256,254,255,256,261,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,258,259,260,260,260,258,259,260,260,260,0,0,260,260,250,251,260,260,260,260,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,258,259,260,260,260,258,259,260,260,260,0,0,260,0,252,253,260,260,0,0,0,0,0,0,0,0,
+243,244,243,244,243,244,243,244,243,244,246,247,246,247,246,247,246,247,246,247,246,247,243,244,243,244,243,244,243,244,243,244,243,244,243,244,243,244,243,244,
+245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245
 </data>
  </layer>
  <objectgroup id="2" name="Collisions">
-  <object id="1" type="Ground" x="0" y="336" width="640" height="16"/>
+  <object id="15" name="Ground" type="Ground" x="0" y="336" width="160" height="16"/>
+  <object id="21" name="Platform" type="Platform" x="192" y="240" width="96" height="16"/>
+  <object id="27" name="Lava" type="Lava" x="160" y="336" width="192" height="16"/>
+  <object id="49" name="Platform" type="Platform" x="304" y="272" width="32" height="16"/>
+  <object id="57" name="Ground" type="Ground" x="352" y="336" width="288" height="16"/>
+  <object id="60" name="Platform" type="Platform" x="432" y="288" width="64" height="16"/>
+  <object id="61" type="OutofBounds" x="0" y="352" width="640" height="16"/>
  </objectgroup>
  <objectgroup id="3" name="Spawnpoints">
-  <object id="2" name="Snowflake" type="Snowflake" x="288" y="304" width="32" height="32"/>
-  <object id="3" name="Snowflake" type="Snowflake" x="512" y="272" width="32" height="32"/>
-  <object id="4" name="Snowflake" type="Snowflake" x="48" y="272" width="32" height="32"/>
-  <object id="5" name="Snowflake" type="Snowflake" x="256" y="304" width="32" height="32"/>
-  <object id="6" name="Snowflake" type="Snowflake" x="320" y="304" width="32" height="32"/>
-  <object id="7" name="Snowflake" type="Snowflake" x="128" y="304" width="32" height="32"/>
-  <object id="8" name="Snowflake" type="Snowflake" x="416" y="304" width="32" height="32"/>
+  <object id="32" name="Snowflake" type="Snowflake" x="240" y="192" width="32" height="32"/>
+  <object id="39" type="Sunshine" x="432" y="-32" width="64" height="320"/>
+  <object id="47" name="WoodBox" type="WoodBox" x="0" y="304" width="32" height="32"/>
+  <object id="50" name="WoodBox" type="WoodBox" x="32" y="304" width="32" height="32"/>
+  <object id="51" name="WoodBox" type="WoodBox" x="64" y="304" width="32" height="32"/>
+  <object id="52" name="WoodBox" type="WoodBox" x="64" y="272" width="32" height="32"/>
+  <object id="53" name="WoodBox" type="WoodBox" x="96" y="272" width="32" height="32"/>
+  <object id="54" name="WoodBox" type="WoodBox" x="96" y="304" width="32" height="32"/>
+  <object id="55" name="WoodBox" type="WoodBox" x="128" y="304" width="32" height="32"/>
+  <object id="56" name="WoodBox" type="WoodBox" x="128" y="272" width="32" height="32"/>
+  <object id="58" name="Snowflake" type="Snowflake" x="560" y="272" width="32" height="32"/>
+  <object id="59" name="WoodBox" type="WoodBox" x="560" y="304" width="32" height="32"/>
  </objectgroup>
 </map>

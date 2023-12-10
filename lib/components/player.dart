@@ -53,7 +53,8 @@ class Player extends SpriteGroupComponent
   bool hasJumped = false;
   bool isOnGround = false;
   bool isInAir = false;
-  bool isPlaying = false;
+  bool playingSound = false;
+  int playCount = 0;
 
   bool collectedSnowflake = false;
 
@@ -97,14 +98,7 @@ class Player extends SpriteGroupComponent
       _collectedSnowflake();
     }
     if (other is LavaBlock || other is Sunshine) {
-      if (game.playSounds && !isPlaying) {
-        isPlaying = true;
-
-        FlameAudio.play(
-          AssetConstants.meltingAudio,
-          volume: game.soundVolume,
-        ).whenComplete(() => isPlaying = false);
-      }
+      _playMeltSound();
     }
 
     super.onCollisionStart(intersectionPoints, other);
@@ -121,6 +115,11 @@ class Player extends SpriteGroupComponent
         isInAir = false;
         isOnGround = true;
       }
+    }
+    if (other is OutOfBoundsBlock) {
+      position.y = other.y + other.height;
+      isInAir = false;
+      isOnGround = true;
     }
     if (other is LavaBlock || other is LavaBlock && other is PlatformBlock) {
       _meltPlayer();
@@ -176,7 +175,6 @@ class Player extends SpriteGroupComponent
       PlayerState.almostMelted: almostMeltedSprite,
       PlayerState.melted: meltedSprite,
     };
-    // Set current animation
     current = PlayerState.normal;
   }
 
@@ -199,16 +197,11 @@ class Player extends SpriteGroupComponent
 
   void _playerJumped(dt) async {
     if (game.playSounds) {
-      // await game.audioPlayer.play(
-      //   DeviceFileSource(AssetConstants.jumpAudio),
-      //   volume: game.soundVolume,
-      // );
       FlameAudio.play(
         AssetConstants.jumpAudio,
         volume: game.soundVolume,
       );
     }
-    // _gravity = 21.8;
     game.worldVelocity.y = -_jumpForce;
     position.y += game.worldVelocity.y * dt;
     hasJumped = false;
@@ -228,13 +221,8 @@ class Player extends SpriteGroupComponent
   }
 
   void _meltPlayer() async {
-    // isShrinking = true;
     currentSize = size / 1.0029;
-    // if (isShrinking) {
     size = currentSize;
-
-    // isShrinking = false;
-    // }
   }
 
   void _updatePlayerState() {
@@ -263,6 +251,23 @@ class Player extends SpriteGroupComponent
       }
     } else {
       size = Vector2.all(32);
+    }
+  }
+
+  void _playMeltSound() {
+    if (game.playSounds) {
+      if (playCount < 3 && !playingSound) {
+        playingSound = true;
+        playCount++;
+        FlameAudio.play(
+          AssetConstants.meltingAudio,
+          volume: game.soundVolume,
+        );
+        Future.delayed(const Duration(seconds: 3), () {
+          playCount = 0;
+          playingSound = false;
+        });
+      }
     }
   }
 }

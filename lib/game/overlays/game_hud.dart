@@ -50,7 +50,7 @@ class GameHud extends PositionComponent with HasGameRef<ChillingEscape> {
       },
       anchor: Anchor.center,
       position: Vector2(
-        game.size.x - 120,
+        120,
         20,
       ),
     );

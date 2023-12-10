@@ -30,6 +30,33 @@ class CollisionBlock extends PositionComponent with HasGameRef<ChillingEscape> {
   }
 }
 
+class OutOfBoundsBlock extends PositionComponent
+    with HasGameRef<ChillingEscape> {
+  final Vector2 gridPosition;
+  double xOffset;
+  OutOfBoundsBlock({
+    required this.gridPosition,
+    required this.xOffset,
+    // super.position,
+    super.size,
+  });
+
+  @override
+  FutureOr<void> onLoad() {
+    position = Vector2(
+      gridPosition.x + xOffset,
+      gridPosition.y,
+    );
+    add(
+      RectangleHitbox(
+        isSolid: true,
+        collisionType: CollisionType.passive,
+      ),
+    );
+    return super.onLoad();
+  }
+}
+
 class PlatformBlock extends PositionComponent with HasGameRef<ChillingEscape> {
   final Vector2 gridPosition;
   double xOffset;

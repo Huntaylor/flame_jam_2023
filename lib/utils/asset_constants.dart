@@ -41,6 +41,18 @@ class AssetConstants {
   ///'Endless-3.tmx'
   static const String endless3 = 'Endless-3.tmx';
 
+  ///'Endless-4.tmx'
+  static const String endless4 = 'Endless-4.tmx';
+
+  ///'Endless-5.tmx'
+  static const String endless5 = 'Endless-5.tmx';
+
+  ///'Endless-6.tmx'
+  static const String endless6 = 'Endless-6.tmx';
+
+  ///'Endless-7.tmx'
+  static const String endless7 = 'Endless-7.tmx';
+
   ///Game Over Overlay
   static const String gameOver = 'GameOver';
 
@@ -68,6 +80,9 @@ class AssetConstants {
   ///Ground collisions
   static const String ground = 'Ground';
 
+  ///Out of bounds collisions
+  static const String outOfBounds = 'OutofBounds';
+
   ///Platform collisions
   static const String platform = 'Platform';
 
@@ -81,6 +96,9 @@ class AssetConstants {
   ///Gray Background
   static const String grayBackground =
       'assets/images/Background/gray_background.png';
+
+  ///Menu Music
+  static const String menuMusic = 'Land_of_8_Bits.mp3';
 
   ///Jump audio
   static const String jumpAudio = 'jump.wav';

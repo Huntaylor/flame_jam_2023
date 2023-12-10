@@ -1,3 +1,4 @@
+import 'package:flame_audio/flame_audio.dart';
 import 'package:flame_jam_2023/chilling_escape.dart';
 import 'package:flame_jam_2023/utils/asset_constants.dart';
 import 'package:flutter/material.dart';
@@ -49,6 +50,11 @@ class _PauseMenuState extends State<PauseMenu> {
                 onChanged: (value) {
                   setState(() {
                     widget.game.playSounds = value;
+                    if (!FlameAudio.bgm.isPlaying && widget.game.playSounds) {
+                      FlameAudio.bgm.resume();
+                    } else {
+                      FlameAudio.bgm.pause();
+                    }
                   });
                 },
               ),
