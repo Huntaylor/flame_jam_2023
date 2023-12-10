@@ -1,8 +1,8 @@
 import 'dart:async';
 
+import 'package:flame_jam_2023/utils/asset_constants.dart';
 import 'package:flame/components.dart';
 import 'package:flame/parallax.dart';
-import 'package:flame_jam_2023/utils/asset_constants.dart';
 import 'package:flutter/material.dart';
 
 class BackgroundTile extends ParallaxComponent {
@@ -18,12 +18,13 @@ class BackgroundTile extends ParallaxComponent {
   FutureOr<void> onLoad() async {
     priority = -10;
     size = Vector2.all(64);
+
     parallax = await game.loadParallax(
       [
         ParallaxImageData(AssetConstants.backgroundTile),
       ],
       baseVelocity: Vector2(
-        20,
+        40,
         -scrollSpeed,
       ),
       repeat: ImageRepeat.repeat,

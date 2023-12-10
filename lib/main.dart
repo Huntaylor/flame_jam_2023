@@ -1,7 +1,5 @@
-import 'package:flame_jam_2023/chilling_escape.dart';
+import 'package:flame_jam_2023/app/app.dart';
 import 'package:flame/flame.dart';
-import 'package:flame/game.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 Future<void> main() async {
@@ -11,9 +9,7 @@ Future<void> main() async {
 
   await Flame.device.setLandscape();
 
-  ChillingEscape game = ChillingEscape();
   runApp(
-    //Bypasses the reset, debug mode will allow hot reset to reset the game
-    GameWidget(game: kDebugMode ? ChillingEscape() : game),
+    const App(),
   );
 }
