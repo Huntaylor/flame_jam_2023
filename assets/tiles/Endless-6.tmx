@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="40" height="23" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="124">
- <tileset firstgid="1" source="Chilling Escape.tsx"/>
+ <tileset firstgid="1" source="Chilling_Escape.tsx"/>
  <tileset firstgid="243" source="Ground_Terrain.tsx"/>
  <layer id="1" name="Background" width="40" height="23">
   <data encoding="csv">
