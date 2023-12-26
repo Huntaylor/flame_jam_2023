@@ -29,7 +29,7 @@
 245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245
 </data>
  </layer>
- <objectgroup id="2" name="Collisions">
+ <objectgroup id="2" name="Collisions" visible="0">
   <object id="15" type="Ground" x="0" y="336" width="128" height="16"/>
   <object id="17" type="Ground" x="256" y="336" width="320" height="16"/>
   <object id="19" name="Platform" type="Platform" x="464" y="304" width="64" height="16"/>
@@ -40,7 +40,7 @@
   <object id="49" name="Platform" type="Platform" x="256" y="304" width="64" height="16"/>
   <object id="50" type="OutofBounds" x="0" y="352" width="640" height="16"/>
  </objectgroup>
- <objectgroup id="3" name="Spawnpoints">
+ <objectgroup id="3" name="Spawnpoints" visible="0">
   <object id="32" name="Snowflake" type="Snowflake" x="16" y="288" width="32" height="32"/>
   <object id="39" type="Sunshine" x="336" y="-96" width="96" height="352"/>
   <object id="40" name="WoodBox" type="WoodBox" x="96" y="304" width="32" height="32"/>

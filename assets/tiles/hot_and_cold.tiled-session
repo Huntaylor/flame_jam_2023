@@ -23,26 +23,26 @@
         },
         "Endless-1.tmx": {
             "expandedObjectLayers": [
-                2,
-                3
+                3,
+                2
             ],
             "scale": 1,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 327,
-                "y": 209
+                "x": 319,
+                "y": 201
             }
         },
         "Endless-2.tmx": {
             "expandedObjectLayers": [
-                2,
-                3
+                3,
+                2
             ],
-            "scale": 1.5,
+            "scale": 2,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 330,
-                "y": 122
+                "x": 319.5,
+                "y": 183.5
             }
         },
         "Endless-3.tmx": {
@@ -53,61 +53,64 @@
             "scale": 1.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 300,
-                "y": 216.66666666666669
+                "x": 319.3333333333333,
+                "y": 183.33333333333334
             }
         },
         "Endless-4.tmx": {
             "expandedObjectLayers": [
-                2,
-                3
+                3,
+                2
             ],
             "scale": 1.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 299.3333333333333,
-                "y": 249.3333333333333
+                "x": 319.3333333333333,
+                "y": 7.333333333333371
             }
         },
         "Endless-5.tmx": {
             "expandedObjectLayers": [
-                2,
-                3
+                3,
+                2
             ],
             "scale": 1.5,
-            "selectedLayer": 2,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 318.66666666666663,
-                "y": 64.66666666666669
+                "x": 319.3333333333333,
+                "y": 183.33333333333334
             }
         },
         "Endless-6.tmx": {
             "expandedObjectLayers": [
-                2,
-                3
+                3,
+                2
             ],
             "scale": 1.5,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 317.3333333333333,
-                "y": 248
+                "x": 319.3333333333333,
+                "y": 183.33333333333334
             }
         },
         "Endless-7.tmx": {
             "expandedObjectLayers": [
-                2,
-                3
+                3,
+                2
             ],
-            "scale": 2,
-            "selectedLayer": 2,
+            "scale": 0.75,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 307.5,
-                "y": 215.5
+                "x": 318.66666666666663,
+                "y": 182.66666666666669
             }
         },
         "Ground_Terrain.tsx": {
             "scaleInDock": 2,
             "scaleInEditor": 5.5
+        },
+        "Ground_Terrain_Spacing.tsx": {
+            "scaleInDock": 1
         },
         "Terrain (16x16).tsx": {
             "scaleInDock": 1,
@@ -132,14 +135,25 @@
     "map.width": 40,
     "openFiles": [
         "Endless-1.tmx",
-        "Endless-2.tmx"
+        "Endless-2.tmx",
+        "Endless-3.tmx",
+        "Endless-4.tmx",
+        "Endless-5.tmx",
+        "Endless-6.tmx",
+        "Endless-7.tmx",
+        "Ground_Terrain.tsx"
     ],
     "project": "hot_and_cold.tiled-project",
     "recentFiles": [
-        "Endless-2.tmx",
-        "Endless-1 - Copy.tmx",
-        "Endless-1.tmx",
         "Ground_Terrain.tsx",
+        "Endless-7.tmx",
+        "Endless-6.tmx",
+        "Endless-5.tmx",
+        "Endless-4.tmx",
+        "Endless-3.tmx",
+        "Endless-2.tmx",
+        "Endless-1.tmx",
+        "Endless-1 - Copy.tmx",
         "Chilling_Escape.tsx",
         "endless_1.tmx",
         "Terrain (16x16).tsx"

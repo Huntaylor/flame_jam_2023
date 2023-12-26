@@ -118,14 +118,15 @@ class Player extends SpriteGroupComponent
     }
     if (other is OutOfBoundsBlock) {
       if (game.worldVelocity.y > 0) {
-        game.worldVelocity.y = 0;
-        position.y = other.y + 64;
-        isInAir = false;
-        isOnGround = true;
+        game.pauseEngine();
+        // game.worldVelocity.y = 0;
+        // position.y = other.y + 64;
+        // isInAir = false;
+        // isOnGround = true;
       }
     }
     if (other is LavaBlock || other is LavaBlock && other is PlatformBlock) {
-      _meltPlayer();
+      // _meltPlayer();
 
       isInAir = position.y < other.y;
       if (game.worldVelocity.y > 0 && isInAir) {
@@ -136,9 +137,9 @@ class Player extends SpriteGroupComponent
         isOnGround = true;
       }
     }
-    if (other is Sunshine) {
-      _meltPlayer();
-    }
+    // if (other is Sunshine) {
+    //   _meltPlayer();
+    // }
     if (other is SpriteBox || other is PlatformBlock) {
       isInAir = position.y < other.y;
 

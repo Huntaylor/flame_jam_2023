@@ -29,10 +29,10 @@
 245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245,245
 </data>
  </layer>
- <objectgroup id="2" name="Collisions">
+ <objectgroup id="2" name="Collisions" visible="0">
   <object id="86" name="Lava" type="Lava" x="0" y="336" width="640" height="16"/>
  </objectgroup>
- <objectgroup id="3" name="Spawnpoints">
+ <objectgroup id="3" name="Spawnpoints" visible="0">
   <object id="71" name="Snowflake" type="Snowflake" x="480" y="64" width="32" height="32"/>
   <object id="73" name="Snowflake" type="Snowflake" x="320" y="128" width="32" height="32"/>
   <object id="77" name="WoodBox" type="WoodBox" x="608" y="304" width="32" height="32"/>

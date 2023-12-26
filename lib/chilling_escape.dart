@@ -39,17 +39,17 @@ class ChillingEscape extends FlameGame
 
   @override
   void update(double dt) {
-    if (player.size.x <= 14) {
-      worldSpeed = 0;
-      pauseEngine();
-      overlays.add(AssetConstants.gameOver);
-    }
+    // if (player.size.x <= 14) {
+    //   worldSpeed = 0;
+    //   pauseEngine();
+    //   overlays.add(AssetConstants.gameOver);
+    // }
     super.update(dt);
   }
 
   @override
   FutureOr<void> onLoad() async {
-    // await images.loadAllImages();
+    await images.loadAllImages();
 
     _loadLevel();
 
